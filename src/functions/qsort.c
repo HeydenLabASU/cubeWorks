@@ -12,13 +12,13 @@ int int_cmp(const void *a, const void *b) {
 
 /* qsort real comparison function */
 int real_cmp(const void *a, const void *b) {
-	int res;
+    int res;
     const float *ia = (const float *)a; /* casting pointer types  */
     const float *ib = (const float *)b;
     if(*ia-*ib<0.0) {
-	        res=-1;
-	} else res=1;
-	return res;
+            res=-1;
+    } else res=1;
+    return res;
     /* real comparison: returns negative if b > a 
     and positive if a > b */
 }

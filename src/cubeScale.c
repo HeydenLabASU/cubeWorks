@@ -6,34 +6,34 @@
 #include "../include/matvec.h"
 
 int main(int argc,char *argv[]) {
-	char fnCUBE[100];
-	char fnOut[100];
-	char tmp[100];
-	FILE *io;
-	t_grid gA;
-	int i,j,k,m;
-	float scale;
+    char fnCUBE[100];
+    char fnOut[100];
+    char tmp[100];
+    FILE *io;
+    t_grid gA;
+    int i,j,k,m;
+    float scale;
 
-	if(argc<4) {
-		printf("usage: ./cubeScale.exe A.cube scale output.cube\n");
-		printf(" output.cube = scale * A.cube\n");
-		exit(1);
-	}
+    if(argc<4) {
+        printf("usage: ./cubeScale.exe A.cube scale output.cube\n");
+        printf(" output.cube = scale * A.cube\n");
+        exit(1);
+    }
 
-	sscanf(argv[1],"%s",fnCUBE);
-	readCUBE(fnCUBE,&gA,1.0,0);
+    sscanf(argv[1],"%s",fnCUBE);
+    readCUBE(fnCUBE,&gA,1.0,0);
 
-	sscanf(argv[2],"%f",&scale);
-	sscanf(argv[3],"%s",fnOut);
+    sscanf(argv[2],"%f",&scale);
+    sscanf(argv[3],"%s",fnOut);
 
-	for(i=0;i<gA.dim[0];i++) {
-		for(j=0;j<gA.dim[1];j++) {
-			for(k=0;k<gA.dim[2];k++) {
-				gA.grid[i][j][k]*=scale;
-			}
-		}
-	}
-	writeCUBE(fnOut,gA,1.0,0);
+    for(i=0;i<gA.dim[0];i++) {
+        for(j=0;j<gA.dim[1];j++) {
+            for(k=0;k<gA.dim[2];k++) {
+                gA.grid[i][j][k]*=scale;
+            }
+        }
+    }
+    writeCUBE(fnOut,gA,1.0,0);
 
-	return 0;
+    return 0;
 }
