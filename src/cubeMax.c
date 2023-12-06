@@ -6,30 +6,30 @@
 #include "../include/qsort.h"
 
 void initProgress(int end,int *cnt,int *maxCnt,int *lastPercent) {
-        cnt[0]=1;
-        maxCnt[0]=end;
-        printf("0%%"); fflush(stdout);
-        lastPercent[0]=0;
+    cnt[0]=1;
+    maxCnt[0]=end;
+    printf("0%%"); fflush(stdout);
+    lastPercent[0]=0;
 }
 
 void reportProgress(int cnt,int maxCnt,int *lastPercent) {
-        double fraction;
-        int percent;
-        int last;
+    double fraction;
+    int percent;
+    int last;
 
-        last=lastPercent[0];
+    last=lastPercent[0];
 
-        fraction=((double)cnt)/((double)maxCnt);
-        percent=(int)(fraction*40);
-        if(percent>last) {
-                lastPercent[0]=percent;
-                last=percent;
-                if(last%4==0) {
-                        printf("%d%%",10*last/4); fflush(stdout);
-                } else {
-                        printf("."); fflush(stdout);
-                }
+    fraction=((double)cnt)/((double)maxCnt);
+    percent=(int)(fraction*40);
+    if(percent>last) {
+        lastPercent[0]=percent;
+        last=percent;
+        if(last%4==0) {
+            printf("%d%%",10*last/4); fflush(stdout);
+        } else {
+            printf("."); fflush(stdout);
         }
+    }
 }
 
 int testGridLimits(int *idx,int gLimits[][2]) {

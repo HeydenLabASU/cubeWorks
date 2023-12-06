@@ -14,7 +14,7 @@ int readPDBcrd(char *fnPDB,t_conf *conf) {
 	float m;
 	int el;
 	
-        io=fopen(fnPDB,"r");
+    io=fopen(fnPDB,"r");
 	if(io==NULL) {
 		printf("ERROR: grid file %s not found\n",fnPDB);
 		exit(1);
@@ -35,7 +35,7 @@ int readPDBcrd(char *fnPDB,t_conf *conf) {
 	i=0;
 	conf[0].totMass=0.0;
 	while(fgets(buffer,300,io)!=NULL) {
-                if(strncmp(buffer,"ATOM  ",6)==0 || strncmp(buffer,"HETATM",6)==0) {
+        if(strncmp(buffer,"ATOM  ",6)==0 || strncmp(buffer,"HETATM",6)==0) {
 			strncpy(tmp,&buffer[11],6);
 			tmp[6]=(char)0;
 			sscanf(tmp,"%s",conf[0].atName[i]);
@@ -70,9 +70,9 @@ int readPDBcrd(char *fnPDB,t_conf *conf) {
 			conf[0].totMass+=m;
 			i++;
 		}
-        }
-        printf("read %d atoms with total mass %f from file %s\n",i,conf[0].totMass,fnPDB);
-        fclose(io);
+    }
+    printf("read %d atoms with total mass %f from file %s\n",i,conf[0].totMass,fnPDB);
+    fclose(io);
 	return 0;
 }
 
@@ -97,9 +97,9 @@ int writePDB(FILE *outPDB,t_conf conf,float box) {
 		if(strlen(name)==5) fprintf(outPDB," %s",name);
 		if(strlen(name)==6) fprintf(outPDB,"%s",name);
 		fprintf(outPDB,"%-4s%c%4d    %8.3f%8.3f%8.3f%6.2f%6.2f\n",
-		        conf.resName[l],ch[chCnt],
-		        conf.resID[l],
-		        conf.atCrd[l][0],conf.atCrd[l][1],conf.atCrd[l][2],1.0,1.0);
+		    conf.resName[l],ch[chCnt],
+		    conf.resID[l],
+		    conf.atCrd[l][0],conf.atCrd[l][1],conf.atCrd[l][2],1.0,1.0);
 		atCnt++;
 		if(atCnt==100000) atCnt=1;
 	}

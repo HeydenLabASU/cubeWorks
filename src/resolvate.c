@@ -20,30 +20,30 @@ void distSq(t_vec a,t_vec b,double *dSq) {
 }
 
 void initProgress(int end,int *cnt,int *maxCnt,int *lastPercent) {
-        cnt[0]=1;
-        maxCnt[0]=end;
-        printf("0%%"); fflush(stdout);
-        lastPercent[0]=0;
+    cnt[0]=1;
+    maxCnt[0]=end;
+    printf("0%%"); fflush(stdout);
+    lastPercent[0]=0;
 }
 
 void reportProgress(int cnt,int maxCnt,int *lastPercent) {
-        double fraction;
-        int percent;
-        int last;
+    double fraction;
+    int percent;
+    int last;
 
-        last=lastPercent[0];
+    last=lastPercent[0];
 
-        fraction=((double)cnt)/((double)maxCnt);
-        percent=(int)(fraction*40);
-        if(percent>last) {
-                lastPercent[0]=percent;
-                last=percent;
-                if(last%4==0) {
-                        printf("%d%%",10*last/4); fflush(stdout);
-                } else {
-                        printf("."); fflush(stdout);
-                }
+    fraction=((double)cnt)/((double)maxCnt);
+    percent=(int)(fraction*40);
+    if(percent>last) {
+        lastPercent[0]=percent;
+        last=percent;
+        if(last%4==0) {
+                printf("%d%%",10*last/4); fflush(stdout);
+        } else {
+                printf("."); fflush(stdout);
         }
+    }
 }
 
 int testGridLimits(int *idx,int gLimits[][2]) {
@@ -147,8 +147,8 @@ int findGridMax(t_grid g,int ***idx3Dto1D,int *startIdx,int gLimits[][2],int *gT
 	int i;
 	
 	ix=startIdx[0];
-        iy=startIdx[1];
-        iz=startIdx[2];
+    iy=startIdx[1];
+    iz=startIdx[2];
 	test=testGridLimits(startIdx,gLimits);
 	if(test==1) {
 		i1=idx3Dto1D[ix][iy][iz];
@@ -258,7 +258,7 @@ int main(int argc,char *argv[]) {
 
 	idx1Dto3D=(int**)malloc(g.nVoxel*sizeof(int*));
         for(i=0;i<g.nVoxel;i++) {
-                idx1Dto3D[i]=(int*)malloc(3*sizeof(int));
+            idx1Dto3D[i]=(int*)malloc(3*sizeof(int));
         }
 	l=0;
 	idx3Dto1D=(int***)malloc(g.dim[0]*sizeof(int**));

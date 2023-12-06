@@ -16,22 +16,22 @@ int readCube(char *fn,char *title,int *nXYZ,float *gOri, float *gVox,float **gri
 
 	fgets(title,300,io);
 	printf("%-20s : %s","input file title",title);
-        fgets(buffer,300,io);
-        fgets(buffer,300,io);
-        sscanf(buffer,"%d %f %f %f",&i,&gOri[0],&gOri[1],&gOri[2]);
-        gOri[0]*=0.5292;
-        gOri[1]*=0.5292;
-        gOri[2]*=0.5292;
-        fgets(buffer,300,io);
-        sscanf(buffer,"%d %f %f %f",&nXYZ[0],&gVox[0],&dum1,&dum2);
-        gVox[0]*=0.5292;
-        fgets(buffer,300,io);
-        sscanf(buffer,"%d %f %f %f",&nXYZ[1],&dum1,&gVox[1],&dum2);
-        gVox[1]*=0.5292;
-        fgets(buffer,300,io);
-        sscanf(buffer,"%d %f %f %f",&nXYZ[2],&dum1,&dum2,&gVox[2]);
-        gVox[2]*=0.5292;
-        fgets(buffer,300,io);
+    fgets(buffer,300,io);
+    fgets(buffer,300,io);
+    sscanf(buffer,"%d %f %f %f",&i,&gOri[0],&gOri[1],&gOri[2]);
+    gOri[0]*=0.5292;
+    gOri[1]*=0.5292;
+    gOri[2]*=0.5292;
+    fgets(buffer,300,io);
+    sscanf(buffer,"%d %f %f %f",&nXYZ[0],&gVox[0],&dum1,&dum2);
+    gVox[0]*=0.5292;
+    fgets(buffer,300,io);
+    sscanf(buffer,"%d %f %f %f",&nXYZ[1],&dum1,&gVox[1],&dum2);
+    gVox[1]*=0.5292;
+    fgets(buffer,300,io);
+    sscanf(buffer,"%d %f %f %f",&nXYZ[2],&dum1,&dum2,&gVox[2]);
+    gVox[2]*=0.5292;
+    fgets(buffer,300,io);
 
 	gN[0]=nXYZ[0]*nXYZ[1]*nXYZ[2];
 	grid[0]=(float*)malloc(gN[0]*sizeof(float));
@@ -42,29 +42,29 @@ int readCube(char *fn,char *title,int *nXYZ,float *gOri, float *gVox,float **gri
 }
 
 int printVolumeData(char *fn,char *title,float *ori,float *vox,int nx,int ny,int nz,float *data) {
-        FILE *cube;
+    FILE *cube;
 	int a,b,c;
-        char name[100];
+    char name[100];
 
-        cube=fopen(fn,"w");
-        fprintf(cube,"%s",title);
-        fprintf(cube,"created by M. Heyden\n");
-        fprintf(cube,"%5d%12.6f%12.6f%12.6f\n",1,ori[0]/0.5292,ori[1]/0.5292,ori[2]/0.5292);
-        fprintf(cube,"%5d%12.6f%12.6f%12.6f\n",nx,vox[0]/0.5292,0.0,0.0);
-        fprintf(cube,"%5d%12.6f%12.6f%12.6f\n",ny,0.0,vox[1]/0.5292,0.0);
-        fprintf(cube,"%5d%12.6f%12.6f%12.6f\n",nz,0.0,0.0,vox[2]/0.5292);
-        fprintf(cube,"%d%12.6f%12.6f%12.6f%12.6f\n",8,0.0,0.0,0.0,0.0);
-	
-        for(a=0;a<nx;a++) {
-                for(b=0;b<ny;b++) {
-                        for(c=0;c<nz;c++) {
-                                fprintf(cube," %12.5e",(double)data[a*ny*nz+b*nz+c]);
-                                if (c % 6 == 5) fprintf(cube,"\n");
-                        }
-                        fprintf(cube,"\n");
-                }
+    cube=fopen(fn,"w");
+    fprintf(cube,"%s",title);
+    fprintf(cube,"created by M. Heyden\n");
+    fprintf(cube,"%5d%12.6f%12.6f%12.6f\n",1,ori[0]/0.5292,ori[1]/0.5292,ori[2]/0.5292);
+    fprintf(cube,"%5d%12.6f%12.6f%12.6f\n",nx,vox[0]/0.5292,0.0,0.0);
+    fprintf(cube,"%5d%12.6f%12.6f%12.6f\n",ny,0.0,vox[1]/0.5292,0.0);
+    fprintf(cube,"%5d%12.6f%12.6f%12.6f\n",nz,0.0,0.0,vox[2]/0.5292);
+    fprintf(cube,"%d%12.6f%12.6f%12.6f%12.6f\n",8,0.0,0.0,0.0,0.0);
+
+    for(a=0;a<nx;a++) {
+        for(b=0;b<ny;b++) {
+            for(c=0;c<nz;c++) {
+                fprintf(cube," %12.5e",(double)data[a*ny*nz+b*nz+c]);
+                if (c % 6 == 5) fprintf(cube,"\n");
+            }
+            fprintf(cube,"\n");
         }
-        fclose(cube);
+    }
+    fclose(cube);
 }
 
 int main(int argc,char *argv[]) {
@@ -114,19 +114,19 @@ int main(int argc,char *argv[]) {
 		format=0;
 	}
 	if(argc>3) {
-                if(sscanf(argv[3],"%f",&scale)!=1) {
-                        printf("ERROR: expected floating point number but read '%s'\n",argv[3]);
-                        exit(1);
-                }
+        if(sscanf(argv[3],"%f",&scale)!=1) {
+            printf("ERROR: expected floating point number but read '%s'\n",argv[3]);
+            exit(1);
+        }
 		printf("%-20s : %f\n","scaling factor",scale);
-        }
+    }
 	if(argc>4) {
-                if(sscanf(argv[4],"%s",title)!=1) {
-                        printf("ERROR: expected string but read '%s'\n",argv[4]);
-                        exit(1);
-                }
-		sprintf(title,"%s\n",argv[4]);
+        if(sscanf(argv[4],"%s",title)!=1) {
+                printf("ERROR: expected string but read '%s'\n",argv[4]);
+                exit(1);
         }
+	    sprintf(title,"%s\n",argv[4]);
+    }
 	printf("%-20s : %s","output file title",title);
 	printf("%-20s : %f %f %f\n","grid origin (A)",gOri[0],gOri[1],gOri[2]);
 	printf("%-20s : %f %f %f\n","voxel dimensions (A)",gVox[0],gVox[1],gVox[2]);
