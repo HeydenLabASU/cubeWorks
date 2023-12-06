@@ -17,6 +17,7 @@ int vecScale(double s,t_vec c,t_vec *b);
 int vecAdd(t_vec a,t_vec b,t_vec *c);
 int vecAdd3(t_vec a,t_vec b1,t_vec b2,t_vec b3,t_vec *c);
 int vecAdd3scale(t_vec a,double s,t_vec b1,t_vec b2,t_vec b3,t_vec *c);
+int vecAdd3idx(t_vec a,int i,t_vec bi,int j,t_vec bj,int k,t_vec bk,t_vec *c);
 int vecSub(t_vec a,t_vec b,t_vec *c);
 int vecSub3(t_vec a,t_vec b1,t_vec b2,t_vec b3,t_vec *c);
 int vecSub3scale(t_vec a,double s,t_vec b1,t_vec b2,t_vec b3,t_vec *c);

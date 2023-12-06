@@ -24,14 +24,13 @@ int main(int argc,char *argv[]) {
 	sscanf(argv[2],"%f",&sigma);
 
 	readCUBE(fnCUBE,&g,1.0,0);
-	printf("read %d voxels\n",g.nVoxel);
 
 	smoothGrid(g,sigma,&gSmooth);
 
 	n=strlen(fnCUBE);
 	strncpy(tmp,fnCUBE,n-5);
 	tmp[n-5]=(char)0;
-	sprintf(fnOut,"%s_smooth-%.2fA.cube",tmp,sigma);
+	sprintf(fnOut,"%s_f-%.2fA.cube",tmp,sigma);
 	writeCUBE(fnOut,gSmooth,1.0,0);
 
 	return 0;

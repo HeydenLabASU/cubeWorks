@@ -367,16 +367,14 @@ int main(int argc,char *argv[]) {
 	sprintf(fnOut,"%s_maxima.dat",tmp);
 	io=fopen(fnOut,"w");
 	fprintf(io,"#Note: all reported indices start at 1 (not 0)\n");
-	fprintf(io,"#%11s %11s %11s% 7s %11s %11s %7s : %-16s\n",
+	fprintf(io,"#%11s %11s %11s %7s %11s %11s %7s : %-16s\n",
 		"x (A)","y (A)","z (A)"," index","peak","sum","nVoxels","member-indices");
 	for(l=0;l<nMax;l++) {
 		m=sorted[l];
 		i=idx1Dto3D[m][0];
 		j=idx1Dto3D[m][1];
 		k=idx1Dto3D[m][2];
-		gridCrd[l][0]=g.oriCUBE[0]+i*g.dg;
-		gridCrd[l][1]=g.oriCUBE[1]+j*g.dg;
-		gridCrd[l][2]=g.oriCUBE[2]+k*g.dg;
+        vecAdd3idx(g.oriCUBE,i,g.a,j,g.b,k,g.c,&gridCrd[l]);
 		fprintf(io,"%11.4e %11.4e %11.4e %7d %11.4e %11.4e %7d :",
 			gridCrd[l][0],gridCrd[l][1],gridCrd[l][2],
 			sorted[l]+1,g.grid[i][j][k],sums[l],cnts[l]);
@@ -401,7 +399,7 @@ int main(int argc,char *argv[]) {
 			sorted[j]=sorted[l];
 			cnts[j]=cnts[l];
 			sums[j]=sums[l];
-			cpyVec(gridCrd[l],&gridCrd[j]);
+			vecCpy(gridCrd[l],&gridCrd[j]);
 			j++;
 		}
 	}

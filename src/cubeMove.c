@@ -10,7 +10,7 @@ int main(int argc,char *argv[]) {
 	char fnOut[100];
 	char tmp[100];
 	FILE *io;
-	t_grid gA,gB,gOut;
+	t_grid gA;
 	int i,j,k,m;
 	t_vec trans;
 
@@ -22,30 +22,17 @@ int main(int argc,char *argv[]) {
 
 	sscanf(argv[1],"%s",fnCUBE);
 	readCUBE(fnCUBE,&gA,1.0,0);
-	printf("read %d voxels\n",gA.nVoxel);
+
 	sscanf(argv[2],"%f",&trans[0]);
 	sscanf(argv[3],"%f",&trans[1]);
 	sscanf(argv[4],"%f",&trans[2]);
 	sscanf(argv[5],"%s",fnOut);
 
-	gOut.nVoxel=gA.nVoxel;
-	gOut.dg=gA.dg;
-	for(m=0;m<3;m++) {
-		gOut.dim[m]=gA.dim[m];
-		gOut.oriUHBD[m]=gA.oriUHBD[m]+trans[m];
-		gOut.oriMH[m]=gA.oriMH[m]+trans[m];
-		gOut.oriCUBE[m]=gA.oriCUBE[m]+trans[m];
-	}
-	strcpy(gOut.title,gA.title);
-	allocGrd(&gOut);
-	for(i=0;i<gOut.dim[0];i++) {
-		for(j=0;j<gOut.dim[1];j++) {
-			for(k=0;k<gOut.dim[2];k++) {
-				gOut.grid[i][j][k]=gA.grid[i][j][k];
-			}
-		}
-	}
-	writeCUBE(fnOut,gOut,1.0,0);
+    vecAdd(gA.oriUHBD,trans,&gA.oriUHBD);
+    vecAdd(gA.oriMH,trans,&gA.oriMH);
+    vecAdd(gA.oriCUBE,trans,&gA.oriCUBE);
+	
+	writeCUBE(fnOut,gA,1.0,0);
 
 	return 0;
 }

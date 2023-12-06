@@ -184,7 +184,15 @@ int vecAdd3(t_vec a,t_vec b1,t_vec b2,t_vec b3,t_vec *c) {
 int vecAdd3scale(t_vec a,double s,t_vec b1,t_vec b2,t_vec b3,t_vec *c) {
 	int i;
 	for(i=0;i<3;i++) {
-		res[0][i]=a[i]+scale*(b1[i]+b2[i]+b3[i]);
+		c[0][i]=a[i]+s*(b1[i]+b2[i]+b3[i]);
+	}
+	return 0;
+}
+
+int vecAdd3idx(t_vec a,int i,t_vec bi,int j,t_vec bj,int k,t_vec bk,t_vec *c) {
+	int m;
+	for(m=0;m<3;m++) {
+		c[0][m]=a[m]+i*bi[m]+j*bj[m]+k*bk[m];
 	}
 	return 0;
 }
@@ -208,7 +216,7 @@ int vecSub3(t_vec a,t_vec b1,t_vec b2,t_vec b3,t_vec *c) {
 int vecSub3scale(t_vec a,double s,t_vec b1,t_vec b2,t_vec b3,t_vec *c) {
     int i;
     for(i=0;i<3;i++) {
-        res[0][i]=a[i]-scale*(b1[i]+b2[i]+b3[i]);
+        c[0][i]=a[i]-s*(b1[i]+b2[i]+b3[i]);
     }
     return 0;
 }
@@ -248,21 +256,21 @@ int getMolCrd(t_mat rot,t_vec trans,t_mol *mol) {
     n=mol[0].nAtoms;
     for(i=0;i<n;i++) {
         matvec(rot,mol[0].conf[conf].atCrd[i],&tmp);
-        addVec(tmp,trans,&mol[0].atCrd[i]);
+        vecAdd(tmp,trans,&mol[0].atCrd[i]);
     }
 
     mol[0].nQ=mol[0].conf[conf].nQ;
     n=mol[0].nQ;
     for(i=0;i<n;i++) {
         matvec(rot,mol[0].conf[conf].qCrd[i],&tmp);
-        addVec(tmp,trans,&mol[0].qCrd[i]);
+        vecAdd(tmp,trans,&mol[0].qCrd[i]);
     }
 
     mol[0].nLJ=mol[0].conf[conf].nLJ;
     n=mol[0].nLJ;
     for(i=0;i<n;i++) {
         matvec(rot,mol[0].conf[conf].ljCrd[i],&tmp);
-        addVec(tmp,trans,&mol[0].ljCrd[i]);
+        vecAdd(tmp,trans,&mol[0].ljCrd[i]);
     }
 
     return 0;

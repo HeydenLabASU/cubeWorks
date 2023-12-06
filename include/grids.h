@@ -6,3 +6,6 @@ int writeUHBDGrid(char *fnGrd,t_grid grid,float scale);
 int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType);
 int writeCUBE(char *fnGrd,t_grid grid,float scale,int oriType);
 int smoothGrid(t_grid g,float sigma,t_grid *res);
+int setCUBEtitle(t_grid *grid,char *title);
+int eqCUBEformat(t_grid gA,t_grid gB);
+int cpyCUBEformat(t_grid gA,t_grid *gB);

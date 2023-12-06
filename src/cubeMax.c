@@ -215,7 +215,7 @@ int main(int argc,char *argv[]) {
 	sscanf(argv[1],"%s",fnCUBE);
 
 	readCUBE(fnCUBE,&g,1.0,0);
-	printf("read %d voxels\n",g.nVoxel);
+    
 	gTraces=(int*)malloc(g.nVoxel*sizeof(int));
 	for(i=0;i<g.nVoxel;i++) {
 		gTraces[i]=0;
@@ -351,9 +351,7 @@ int main(int argc,char *argv[]) {
 		i=idx1Dto3D[m][0];
 		j=idx1Dto3D[m][1];
 		k=idx1Dto3D[m][2];
-		gridCrd[l][0]=g.oriCUBE[0]+i*g.dg;
-		gridCrd[l][1]=g.oriCUBE[1]+j*g.dg;
-		gridCrd[l][2]=g.oriCUBE[2]+k*g.dg;
+        vecAdd3idx(g.oriCUBE,i,g.a,j,g.b,k,g.c,&gridCrd[l]);
 		fprintf(io,"%11.4e %11.4e %11.4e %7d %11.4e %11.4e %7d :",
 			gridCrd[l][0],gridCrd[l][1],gridCrd[l][2],
 			sorted[l]+1,g.grid[i][j][k],sums[l],cnts[l]);

@@ -10,7 +10,7 @@ int main(int argc,char *argv[]) {
 	char fnOut[100];
 	char tmp[100];
 	FILE *io;
-	t_grid gA,gB,gOut;
+	t_grid gA;
 	int i,j,k,m;
 	float scale;
 
@@ -22,28 +22,18 @@ int main(int argc,char *argv[]) {
 
 	sscanf(argv[1],"%s",fnCUBE);
 	readCUBE(fnCUBE,&gA,1.0,0);
-	printf("read %d voxels\n",gA.nVoxel);
+
 	sscanf(argv[2],"%f",&scale);
 	sscanf(argv[3],"%s",fnOut);
 
-	gOut.nVoxel=gA.nVoxel;
-	gOut.dg=gA.dg;
-	for(m=0;m<3;m++) {
-		gOut.dim[m]=gA.dim[m];
-		gOut.oriUHBD[m]=gA.oriUHBD[m];
-		gOut.oriMH[m]=gA.oriMH[m];
-		gOut.oriCUBE[m]=gA.oriCUBE[m];
-	}
-	strcpy(gOut.title,gA.title);
-	allocGrd(&gOut);
-	for(i=0;i<gOut.dim[0];i++) {
-		for(j=0;j<gOut.dim[1];j++) {
-			for(k=0;k<gOut.dim[2];k++) {
-				gOut.grid[i][j][k]=scale*gA.grid[i][j][k];
+	for(i=0;i<gA.dim[0];i++) {
+		for(j=0;j<gA.dim[1];j++) {
+			for(k=0;k<gA.dim[2];k++) {
+				gA.grid[i][j][k]*=scale;
 			}
 		}
 	}
-	writeCUBE(fnOut,gOut,1.0,0);
+	writeCUBE(fnOut,gA,1.0,0);
 
 	return 0;
 }

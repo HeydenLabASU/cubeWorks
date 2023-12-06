@@ -5,7 +5,7 @@ exe=(
 resolvate
 cube2dat
 cubeMax
-cubeSmooth
+cubeFilter
 cubeAdd
 cubeSum
 cubeSub

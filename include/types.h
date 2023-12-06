@@ -2,13 +2,18 @@ typedef float t_vec[3];
 typedef double t_mat[3][3];
 
 typedef struct {
+    int elNum;
+    float charge;
+    t_vec crd;
+} t_atom;
+
+typedef struct {
     int dim[3];
     int nVoxel;
     t_vec oriUHBD; /*center of voxel [-1][-1][-1] (makes sense in fortran)*/
 	t_vec oriMH;   /*corner of voxel [0][0][0]*/
 	t_vec oriCUBE; /*center of voxel [0][0][0]*/
     t_vec a,b,c;
-	double da,db,dc;
 	double dg;
 	int aligned;
 	int orthorhombic;
@@ -16,6 +21,8 @@ typedef struct {
     float ***grid;
     char title[75];
 	double maxRange;
+    int nAtoms;
+    t_atom *atoms;
 } t_grid;
 
 typedef struct {

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <fftw3.h>
 #include "../../include/types.h"
@@ -62,20 +63,27 @@ int readUHBDGridASCII(char *fnGrd,t_grid *grid,float scale) {
     grid[0].aligned=1;
     grid[0].orthorhombic=1;
     grid[0].cubic=1;
+    grid[0].nAtoms=0;
     fgets(buffer,300,io);
     sscanf(buffer,"%s",grid[0].title);
     fgets(buffer,300,io);
     sscanf(buffer,"%f %f %d %d %d %d %d",
         &factor,&fdum,&idum[0],&idum[1],&idum[2],&idum[3],&idum[4]);
     fgets(buffer,300,io);
-    sscanf(buffer,"%d %d %d %f %f %f %f",
+    sscanf(buffer,"%d %d %d %lf %f %f %f",
         &grid[0].dim[0],
         &grid[0].dim[1],
         &grid[0].dim[2],
         &grid[0].dg,
         &grid[0].oriUHBD[0],
         &grid[0].oriUHBD[1],
-        &grid[0].oriUHBD[2]);
+        &grid[0].oriUHBD[2]
+    );
+    if(grid[0].dg<=0) {
+        printf("negative or 0 grid constant %f in %s\n",grid[0].dg,fnGrd);
+        exit(1);
+    }
+     /*define the vectors of the (implied) cubic voxels*/
     for(i=0;i<3;i++) {
         grid[0].a[i]=0.0;
         grid[0].b[i]=0.0;
@@ -89,10 +97,7 @@ int readUHBDGridASCII(char *fnGrd,t_grid *grid,float scale) {
     nj=grid[0].dim[1];
     nk=grid[0].dim[2];
     grid[0].nVoxel=ni*nj*nk;
-    if(grid[0].dg<=0) {
-        printf("negative or 0 grid constant %f in %s\n",grid[0].dg,fnGrd);
-        exit(1);
-    }
+
     for(i=0;i<3;i++) {
 		grid[0].oriMH[i]=grid[0].oriUHBD[i]+0.5*grid[0].dg;
 		grid[0].oriCUBE[i]=grid[0].oriUHBD[i]+grid[0].dg;
@@ -134,6 +139,7 @@ int readUHBDGrid(char *fnGrd,t_grid *grid,float scale) {
     grid[0].aligned=1;
     grid[0].orthorhombic=1;
     grid[0].cubic=1;
+    grid[0].nAtoms=0;
     readNBYTE(io,160,fnGrd);
     fread(title,sizeof(char),72,io);
     fread(&factor,sizeof(float),1,io);
@@ -153,6 +159,7 @@ int readUHBDGrid(char *fnGrd,t_grid *grid,float scale) {
         printf("negative or 0 grid constant %f in %s\n",grid[0].dg,fnGrd);
         exit(1);
     }
+    /*define the vectors of the (implied) cubic voxels*/
     for(i=0;i<3;i++) {
         grid[0].a[i]=0.0;
         grid[0].b[i]=0.0;
@@ -161,6 +168,7 @@ int readUHBDGrid(char *fnGrd,t_grid *grid,float scale) {
     grid[0].a[0]=grid[0].dg;
     grid[0].b[1]=grid[0].dg;
     grid[0].c[2]=grid[0].dg;
+
     fread(grid[0].oriUHBD,sizeof(float),3,io);
     /*shift origin from center of voxel [-1][-1][-1] to corner of voxel [0][0][0]*/
     /*this makes it easy to determine the position of something within the grid in C*/
@@ -265,15 +273,12 @@ int writeUHBDGrid(char *fnGrd,t_grid grid,float scale) {
 int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
 	FILE *io;
 	char buffer[300];
-	int nAtoms;
 	float tmp;
 	float toA=0.529177;
 	int i,j,k;
 	int ni,nj,nk;
 	t_vec a,b,c;
-	double ab,ac,bc;
-	double da,db,dc;
-	double dab,dac,dbc;
+    t_vec crd;
 
 	/*oriType=1 non-standard 3D-2PT internal CUBE format: origin describes corner of voxel [0][0][0]*/
 	/*oriType!=1 standard CUBE format: origin describes center of voxel [0][0][0]*/
@@ -290,8 +295,8 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
     sscanf(buffer,"%s",grid[0].title);
     fgets(buffer,300,io);
     fgets(buffer,300,io);
-    sscanf(buffer,"%d %f %f %f\n",&nAtoms,&grid[0].oriMH[0],&grid[0].oriMH[1],&grid[0].oriMH[2]);
-	if(nAtoms!=0) printf("NOTE: ignoring %d atom(s) in CUBE file: %s\n",nAtoms,fnGrd);
+    sscanf(buffer,"%d %f %f %f\n",&grid[0].nAtoms,&grid[0].oriMH[0],&grid[0].oriMH[1],&grid[0].oriMH[2]);
+
     fgets(buffer,300,io);
     sscanf(buffer,"%d %f %f %f",&ni,&a[0],&a[1],&a[2]);
 	if(ni<0) {
@@ -301,14 +306,16 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
 	}
     vecScale(toA,a,&a);
     vecCpy(a,&grid[0].a);
+
     fgets(buffer,300,io);
     sscanf(buffer,"%d %f %f %f",&nj,&b[0],&b[1],&b[2]);
     vecScale(toA,b,&b);
 	vecCpy(b,&grid[0].b);
 	if(nj<0) nj*=-1;
+
     fgets(buffer,300,io);
     sscanf(buffer,"%d %f %f %f",&nk,&c[0],&c[1],&c[2]);
-    vecSscale(toA,c,&c);
+    vecScale(toA,c,&c);
 	vecCpy(c,&grid[0].c);
 	if(nk<0) nk*=-1;
 
@@ -316,24 +323,25 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
 	if(a[1]!=0.0 || a[2]!=0.0) grid[0].aligned=0;
 	if(b[0]!=0.0 || b[2]!=0.0) grid[0].aligned=0;
 	if(c[0]!=0.0 || c[1]!=0.0) grid[0].aligned=0;
-	if(grid[0].aligned==0) {
+	if(grid[0].aligned!=1) {
 		printf("NOTE: grid voxels not aligned with axes\n");
 	}
 
     if(vecOrtho(a,b)==1 && vecOrtho(a,c)==1 && vecOrtho(b,c)==1) {
         grid[0].orthorhombic=1;
+        if(vecLenEq(a,b)==1 && vecLenEq(a,c)==1 && vecLenEq(b,c)==1) {
+		    grid[0].cubic=1;
+            vecNorm(a,&grid[0].dg);
+	    } else {
+		    grid[0].cubic=0;
+            grid[0].dg=0.0;
+		    printf("NOTE: grid voxels orthorhombic but not cubic\n");
+        }
     } else {
 		grid[0].orthorhombic=0;
-		printf("NOTE: grid voxels not orthorhombic\n");
-	}
-
-	if(grid[0].orthorhombic==1 && vecLenEq(a,b)==1 && vecLenEq(a,c)==1 && vecLenEq(b,c)==1) {
-		grid[0].cubic=1;
-        vecNorm(a,&grid[0].dg);
-	} else {
-		grid[0].cubic=0;
+        grid[0].cubic=0;
         grid[0].dg=0.0;
-		printf("NOTE: grid voxels not cubic\n");
+		printf("NOTE: grid voxels not orthorhombic\n");
 	}
 	
 	grid[0].dim[0]=ni;
@@ -351,13 +359,27 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
 		vecAdd3scale(grid[0].oriMH,0.5,a,b,c,&grid[0].oriCUBE);
 		vecSub3scale(grid[0].oriMH,0.5,a,b,c,&grid[0].oriUHBD);
 	}
-	for(i=0;i<nAtoms;i++) fgets(buffer,300,io);
+
+    grid[0].atoms=(t_atom*)malloc(grid[0].nAtoms*sizeof(t_atom));
+	for(i=0;i<grid[0].nAtoms;i++) {
+        fgets(buffer,300,io);
+        sscanf(buffer,"%d %f %f %f %f",
+            &grid[0].atoms[i].elNum,
+            &grid[0].atoms[i].charge,
+            &crd[0],
+            &crd[1],
+            &crd[2]
+        );
+        vecScale(toA,crd,&crd);
+        vecCpy(crd,&grid[0].atoms[i].crd);
+    }
 
 	allocGrd(grid);
 	for(i=0;i<ni;i++) {
         for(j=0;j<nj;j++) {
             for(k=0;k<nk;k++) {
                 fscanf(io,"%f",&tmp);
+                if(scale!=1.0) printf("NOTE: grid values scled by %f\n",scale);
                 grid[0].grid[i][j][k]=tmp*scale;
             }
         }
@@ -381,15 +403,24 @@ int writeCUBE(char *fnGrd,t_grid grid,float scale,int oriType) {
 	fprintf(io,"%s\n",grid.title);
 	if(oriType==1) {
 		fprintf(io,"non-standard format: origin = corner of voxel [0][0][0]\n");
-		fprintf(io,"%5d%12.6f%12.6f%12.6f\n",1,grid.oriMH[0]/toA,grid.oriMH[1]/toA,grid.oriMH[2]/toA);
+		fprintf(io,"%5d%12.6f%12.6f%12.6f\n",grid.nAtoms,grid.oriMH[0]/toA,grid.oriMH[1]/toA,grid.oriMH[2]/toA);
 	} else {
 		fprintf(io,"Gaussian cube format\n");
-		fprintf(io,"%5d%12.6f%12.6f%12.6f\n",1,grid.oriCUBE[0]/toA,grid.oriCUBE[1]/toA,grid.oriCUBE[2]/toA);
+		fprintf(io,"%5d%12.6f%12.6f%12.6f\n",grid.nAtoms,grid.oriCUBE[0]/toA,grid.oriCUBE[1]/toA,grid.oriCUBE[2]/toA);
 	}
 	fprintf(io,"%5d%12.6f%12.6f%12.6f\n",ni,grid.a[0]/toA,grid.a[1]/toA,grid.a[2]/toA);
 	fprintf(io,"%5d%12.6f%12.6f%12.6f\n",ni,grid.b[0]/toA,grid.b[1]/toA,grid.b[2]/toA);
 	fprintf(io,"%5d%12.6f%12.6f%12.6f\n",ni,grid.c[0]/toA,grid.c[1]/toA,grid.c[2]/toA);
-	fprintf(io,"%5d%12.6f%12.6f%12.6f%12.6f\n",8,0.0,0.0,0.0,0.0);
+
+    for(i=0;i<grid.nAtoms;i++) {
+        fprintf(io,"%5d%12.6f%12.6f%12.6f%12.6f\n",
+            grid.atoms[i].elNum,
+            grid.atoms[i].charge,
+            grid.atoms[i].crd[0],
+            grid.atoms[i].crd[1],
+            grid.atoms[i].crd[2]
+        );
+    }
 
 	for(i=0;i<ni;i++) {
 		for(j=0;j<nj;j++) {
@@ -416,6 +447,11 @@ int smoothGrid(t_grid g,float sigma,t_grid *res) {
     double dsq;
 	double gaussNorm;
 
+    if(g.cubic!=1) {
+        printf("ERROR: function \'smoothGrid\' only implemented for cubic voxels\n");
+        exit(1);
+    }
+
     ni=g.dim[0];
     nj=g.dim[1];
     nk=g.dim[2];
@@ -427,7 +463,7 @@ int smoothGrid(t_grid g,float sigma,t_grid *res) {
     vecCpy(g.oriMH,&res[0].oriMH);
     vecCpy(g.oriCUBE,&res[0].oriCUBE);
     res[0].dg=g.dg;
-    allocGrd(&res);
+    allocGrd(res);
     for(i=0;i<75;i++) res[0].title[i]=(char)0;
     sprintf(res[0].title,"resolution %6.3f A",sigma);
 
@@ -489,5 +525,50 @@ int smoothGrid(t_grid g,float sigma,t_grid *res) {
     fftwf_destroy_plan(invftData);
     fftwf_free(filter);
     fftwf_free(data);
+    return 0;
+}
+
+int setCUBEtitle(t_grid *grid,char *title) {
+    strncpy(grid[0].title,title,72);
+    grid[0].title[72]=(char)0;
+    return 0;
+}
+
+int eqCUBEformat(t_grid gA,t_grid gB) {
+    int m;
+    int equal=1;
+
+    if(gA.nVoxel!=gB.nVoxel) equal=0;
+	if(gA.dg!=gB.dg) equal=0;
+	for(m=0;m<3;m++) {
+		if(gA.dim[m]!=gB.dim[m]) equal=0;
+		if(gA.oriCUBE[m]!=gB.oriCUBE[m]) equal=0;
+        if(gA.a[m]!=gB.a[m]) equal=0;
+        if(gA.b[m]!=gB.b[m]) equal=0;
+        if(gA.c[m]!=gB.c[m]) equal=0;
+	}
+    return equal;
+}
+
+int cpyCUBEformat(t_grid gA,t_grid *gB) {
+    int m;
+
+    gB[0].nVoxel=gA.nVoxel;
+	gB[0].dg=gA.dg;
+    gB[0].aligned=gA.aligned;
+    gB[0].orthorhombic=gA.orthorhombic;
+    gB[0].cubic=gA.cubic;
+    strcpy(gB[0].title,gA.title);
+	for(m=0;m<3;m++) {
+		gB[0].dim[m]=gA.dim[m];
+		gB[0].oriUHBD[m]=gA.oriUHBD[m];
+		gB[0].oriMH[m]=gA.oriMH[m];
+		gB[0].oriCUBE[m]=gA.oriCUBE[m];
+        gB[0].a[m]=gA.a[m];
+        gB[0].b[m]=gA.b[m];
+        gB[0].c[m]=gA.c[m];
+	}
+    gB[0].nAtoms=gA.nAtoms;
+    gB[0].atoms=gA.atoms;
     return 0;
 }
