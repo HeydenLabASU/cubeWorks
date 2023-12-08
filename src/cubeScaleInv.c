@@ -45,7 +45,7 @@ int main(int argc,char *argv[]) {
         }
     }
     if(argc>4) {
-        setCUBEtitle(&gOut,title);
+        setCUBEtitle(&gA,title);
     }
     writeCUBE(fnOut,gA,1.0,0);
 
