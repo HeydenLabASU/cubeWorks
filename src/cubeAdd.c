@@ -7,13 +7,14 @@
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
     char fnOut[100];
+    char title[300];
     char tmp[100];
     FILE *io;
     t_grid gA,gB,gOut;
     int i,j,k,m;
 
     if(argc<4) {
-        printf("usage: ./cubeAdd.exe A.cube B.cube output.cube\n");
+        printf("usage: ./cubeAdd.exe A.cube B.cube output.cube [output_title]\n");
         printf(" output.cube = A.cube + B.cube\n");
         exit(1);
     }
@@ -23,6 +24,13 @@ int main(int argc,char *argv[]) {
     sscanf(argv[2],"%s",fnCUBE);
     readCUBE(fnCUBE,&gB,1.0,0);
     sscanf(argv[3],"%s",fnOut);
+    if(argc>4) {
+        if(sscanf(argv[4],"%s",title)!=1) {
+            printf("ERROR: expected string but read '%s'\n",argv[4]);
+            exit(1);
+        }
+        sprintf(title,"%s",argv[4]);
+    }
 
     if(eqCUBEformat(gA,gB)!=1) {
         printf("ERROR: incompatible grid formats:\n");
@@ -40,6 +48,9 @@ int main(int argc,char *argv[]) {
                 gOut.grid[i][j][k]=gA.grid[i][j][k]+gB.grid[i][j][k];
             }
         }
+    }
+    if(argc>4) {
+        setCUBEtitle(&gOut,title);
     }
     writeCUBE(fnOut,gOut,1.0,0);
 

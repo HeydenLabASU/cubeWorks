@@ -2,18 +2,19 @@
 
 #compile either all (default) or one (command line arg)
 exe=(
-resolvate
 cube2dat
-cubeMax
-cubeFilter
 cubeAdd
-cubeSum
-cubeSub
-cubeMult
 cubeDiv
+cubeFilter
+cubeMax
+cubeMove
+cubeMult
 cubeScale
 cubeScaleInv
-cubeMove
+cubeSub
+cubeSum
+cubeTitle
+resolvate
 )
 if [ ! -z $1 ]; then
 exe=( $1 )

@@ -48,8 +48,8 @@ int main(int argc,char *argv[]) {
     }
     if(argc>4) {
         if(sscanf(argv[4],"%s",title)!=1) {
-                printf("ERROR: expected string but read '%s'\n",argv[4]);
-                exit(1);
+            printf("ERROR: expected string but read '%s'\n",argv[4]);
+            exit(1);
         }
         sprintf(title,"%s",argv[4]);
     }
