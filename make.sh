@@ -76,5 +76,5 @@ mv src/functions/*.o obj/functions/
 mv src/*.o obj/
 x=cubeFilter
 echo "linking ${x}.exe"
-gcc obj/functions/*.o obj/${x}.o -lm -lfftw3f -o bin/${x}.exe
+gcc obj/functions/*.o obj/${x}.o -lm -lfftw3f -o bin/${x}
 fi
