@@ -4,6 +4,7 @@
 #include <math.h>
 #include "../include/types.h"
 #include "../include/get.h"
+#include "../include/matvec.h"
 #include "../include/grids.h"
 
 int main(int argc,char *argv[]) {
