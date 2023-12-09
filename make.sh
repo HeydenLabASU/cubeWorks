@@ -31,7 +31,7 @@ cd functions
 files=$(ls *.c)
 for f in ${files[@]}
 do
-if [ "$f" != "filter.c" ] || [ $noFT -eq 0 ]; then
+if [ "$f" != "filter.c" ]; then
 echo "compiling functions/${f}"
 gcc -c ${f} -lm -O3
 fi
@@ -40,31 +40,39 @@ cd ..
 files=$(ls *.c)
 for f in ${files[@]}
 do
-if [ "$f" != "cubeFilter.c" ] || [ $noFT -eq 0 ]; then
+if [ "$f" != "cubeFilter.c" ]; then
 echo "compiling ${f}"
-gcc -c ${f}
+gcc -c ${f} -lm -O3
 fi
 done
 cd ..
-if [ ! -d obj ]; then
-mkdir obj
-fi
-if [ ! -d obj/functions ]; then
-mkdir obj/functions
-fi
+mkdir -p obj
+mkdir -p obj/functions
 mv src/functions/*.o obj/functions/
-mv src/*.o obj/
-if [ ! -d bin ]; then
-mkdir bin
+if [ -f obj/functions/filter.o ]; then
+rm obj/functions/filter.o
 fi
+mv src/*.o obj/
+mkdir -p bin
 for x in ${exe[@]}
 do
 if [ "$x" != "cubeFilter" ]; then
 echo "linking ${x}.exe"
 gcc obj/functions/*.o obj/${x}.o -lm -o bin/${x}.exe
-elif [ $noFT -eq 0 ]; then
-echo "linking ${x}.exe"
-gcc obj/functions/*.o obj/${x}.o -lfftw3f -lm -o bin/${x}.exe
 fi
 done
+
+if [ $noFT -eq 0 ]; then
+cd src/functions
+f=filter.c
+gcc -c ${f} -lm -O3
 cd ..
+f=cubeFilter.c
+gcc -c ${f} -lm -O3
+cd ..
+mv src/functions/*.o obj/functions/
+mv src/*.o obj/
+x=cubeFilter
+echo "linking ${x}.exe"
+gcc obj/functions/*.o obj/${x}.o -lm -lfftw3f -o bin/${x}.exe
+fi
