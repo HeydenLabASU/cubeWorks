@@ -33,7 +33,7 @@ cubeDiv: $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
 cubeFilter: $(OBJS) obj/filter.o
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS) $(FT)
+	$(CC) -o bin/$@ $^ $(OBJS) obj/filter.o $(CFLAGS) $(FT)
 
 cubeMax: $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
