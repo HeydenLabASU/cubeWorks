@@ -21,46 +21,46 @@ cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
 cubeSub cubeSum cubeTitle resolvate
 
 cube2dat: $(ODIR)/cube2dat.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeAdd: $(ODIR)/cubeAdd.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeDiv: $(ODIR)/cubeDiv.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeFilter: $(ODIR)/cubeFilter.o $(OBJS) obj/filter.o
-	$(CC) -o bin/$@ $^ $(OBJS) obj/filter.o $(CFLAGS) $(FT)
+	$(CC) -o bin/$@ $^ $(CFLAGS) $(FT)
 
 cubeMax: $(ODIR)/cubeMax.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeMove: $(ODIR)/cubeMove.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeMult: $(ODIR)/cubeMult.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeRot: $(ODIR)/cubeRot.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeScale: $(ODIR)/cubeScale.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeScaleInv: $(ODIR)/cubeScaleInv.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeSub: $(ODIR)/cubeSub.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeSum: $(ODIR)/cubeSum.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeTitle: $(ODIR)/cubeTitle.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 reolvate: $(ODIR)/resolvate.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 $(ODIR)/%.o: src/functions/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
