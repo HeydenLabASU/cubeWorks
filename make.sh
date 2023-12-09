@@ -65,9 +65,11 @@ done
 if [ $noFT -eq 0 ]; then
 cd src/functions
 f=filter.c
+echo "compiling functions/${f}"
 gcc -c ${f} -lm -O3
 cd ..
 f=cubeFilter.c
+echo "compiling ${f}"
 gcc -c ${f} -lm -O3
 cd ..
 mv src/functions/*.o obj/functions/
