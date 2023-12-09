@@ -4,6 +4,7 @@
 #include <fftw3.h>
 #include "../../include/types.h"
 #include "../../include/matvec.h"
+#include "../../include/grids.h"
 
 /*requires FFTW3f (single precision) */
 int smoothGrid(t_grid g,float sigma,t_grid *res) {
