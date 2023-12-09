@@ -42,7 +42,7 @@ int main(int argc,char *argv[]) {
     }
 
     if(argc>3) {
-        setCUBEtitle(&gOut,title);
+        setCUBEtitle(&g,title);
     }
     writeCUBE(fnOut,g,1.0,0);
 

@@ -30,6 +30,12 @@ cube2dat: $(ODIR)/cube2dat.o $(OBJS)
 cubeAdd: $(ODIR)/cubeAdd.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
+cubeCenter: $(ODIR)/cubeCenter.o $(OBJS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
+
+cubeDelAtoms: $(ODIR)/cubeDelAtoms.o $(OBJS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
+
 cubeDiv: $(ODIR)/cubeDiv.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
