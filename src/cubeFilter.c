@@ -4,6 +4,7 @@
 #include "../include/types.h"
 #include "../include/get.h"
 #include "../include/grids.h"
+#include "../include/filter.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
