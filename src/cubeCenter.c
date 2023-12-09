@@ -23,7 +23,7 @@ int main(int argc,char *argv[]) {
     getString(argv[1],fnCUBE);
     printf("%-20s : %s\n","input file",fnCUBE);
     getString(argv[2],fnOut);
-    printf("%-20s : %s\n","output file",fnOut;
+    printf("%-20s : %s\n","output file",fnOut);
     
     readCUBE(fnCUBE,&g,1.0,0);
 
