@@ -21,7 +21,8 @@ noFT=0
 if [ ! -z $1 ]; then
 if [ "$1" = "noFT" ] || [ "$1" != "cubeFilter" ]; then
 noFT=1
-else
+fi
+if [ "$1" = "noFT" ]; then
 exe=( $1 )
 fi
 fi
