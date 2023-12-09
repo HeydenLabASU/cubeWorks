@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <fftw3.h>
 #include "../../include/types.h"
 #include "../../include/matvec.h"
 

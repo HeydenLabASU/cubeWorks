@@ -37,20 +37,20 @@ echo "compiling ${f}"
 gcc -c ${f}
 done
 cd ..
-if [ ! -d lib ]; then
-mkdir lib
+if [ ! -d obj ]; then
+mkdir obj
 fi
-if [ ! -d lib/functions ]; then
-mkdir lib/functions
+if [ ! -d obj/functions ]; then
+mkdir obj/functions
 fi
-mv src/functions/*.o lib/functions/
-mv src/*.o lib/
+mv src/functions/*.o obj/functions/
+mv src/*.o obj/
 if [ ! -d bin ]; then
 mkdir bin
 fi
 for x in ${exe[@]}
 do
 echo "linking ${x}.exe"
-gcc lib/functions/*.o lib/${x}.o -lfftw3f -o bin/${x}.exe
+gcc obj/functions/*.o obj/${x}.o -lfftw3f -o bin/${x}.exe
 done
 cd ..
