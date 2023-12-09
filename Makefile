@@ -59,7 +59,7 @@ cubeSum: $(ODIR)/cubeSum.o $(OBJS)
 cubeTitle: $(ODIR)/cubeTitle.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
-reolvate: $(ODIR)/resolvate.o $(OBJS)
+resolvate: $(ODIR)/resolvate.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 $(ODIR)/%.o: src/functions/%.c $(DEPS)
