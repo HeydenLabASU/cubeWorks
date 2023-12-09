@@ -7,7 +7,6 @@
 #include "../include/grids.h"
 
 int main(int argc,char *argv[]) {
-    FILE *io;
     char fnCUBE[300],fnOut[300];
     char title[300];
     int i,j,k,m;
@@ -16,7 +15,7 @@ int main(int argc,char *argv[]) {
     t_vec center;
 
     if(argc<3) {
-        printf("usage: cubeCenter input.cube output.cube\n");
+        printf("usage: cubeCenter input.cube output.cube [output title]\n");
         exit(1);
     }
 
@@ -24,6 +23,11 @@ int main(int argc,char *argv[]) {
     printf("%-20s : %s\n","input file",fnCUBE);
     getString(argv[2],fnOut);
     printf("%-20s : %s\n","output file",fnOut);
+
+    if(argc>3) {
+        getString(argv[3],title);
+        printf("%-20s : %s\n","output title",title);
+    }
     
     readCUBE(fnCUBE,&g,1.0,0);
 
@@ -37,6 +41,9 @@ int main(int argc,char *argv[]) {
         vecSub(g.atoms[i].crd,center,&g.atoms[i].crd);
     }
 
+    if(argc>3) {
+        setCUBEtitle(&gOut,title);
+    }
     writeCUBE(fnOut,g,1.0,0);
 
     return 0;

@@ -9,7 +9,6 @@
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
     char fnOut[100];
-    char tmp[100];
     FILE *io;
     t_grid gA,gB,gOut;
     int equal;

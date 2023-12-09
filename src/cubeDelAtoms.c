@@ -7,9 +7,7 @@
 #include "../include/grids.h"
 
 int main(int argc,char *argv[]) {
-    FILE *io;
     char fnCUBE[300];
-    char title[300];
     int i,j,k,m;
     float **gCrd;
     t_grid g;
