@@ -3,11 +3,12 @@
 #include <string.h>
 #include <math.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/grids.h"
 
 int main(int argc,char *argv[]) {
     FILE *io;
-    char fnInput[300],fnOutput[300];
+    char fnCUBE[300];
     char title[300];
     int i,j,k,m;
     float **gCrd;
@@ -18,17 +19,15 @@ int main(int argc,char *argv[]) {
         exit(1);
     }
 
-    strcpy(fnInput,argv[1]);
+    getString(argv[1],fnCUBE);
+    printf("%-20s : %s\n","input file",fnCUBE);
+
+    getString(argv[2],title);
+    printf("%-20s : %s\n","output file",title);
     
-    if(sscanf(argv[2],"%s",title)!=1) {
-        printf("ERROR: expected string but read '%s'\n",argv[2]);
-        exit(1);
-    }
-    sprintf(title,"%s",argv[2]);
-    
-    readCUBE(fnInput,&g,1.0,0);
+    readCUBE(fnCUBE,&g,1.0,0);
     setCUBEtitle(&g,title);
-    writeCUBE(fnInput,g,1.0,0);
+    writeCUBE(fnCUBE,g,1.0,0);
 
     return 0;
 }

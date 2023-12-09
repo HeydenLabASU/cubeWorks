@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/pdbio.h"
 #include "../include/qsort.h"
@@ -199,7 +200,7 @@ int findGridMax(t_grid g,int ***idx3Dto1D,int *startIdx,int gLimits[][2],int *gT
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
     char fnPDB[100];
-    char fnOut[100];
+    char fnOut1[100],fnOut2[100];
     char tmp[100];
     FILE *io;
     t_grid g;
@@ -231,6 +232,27 @@ int main(int argc,char *argv[]) {
         printf(" input.cube: cube file with water density\n");
         exit(1);
     }
+
+    getString(argv[1],fnPDB);
+    printf("%-20s : %s\n","pdb input file",fnPDB);
+
+    getString(argv[1],fnCUBE);
+    printf("%-20s : %s\n","cube input file",fnCUBE);
+
+    getFloat(argv[3],&dist);
+    printf("%-20s : %f\n","distance",dist);
+
+    n=strlen(fnCUBE);
+    strncpy(tmp,fnCUBE,n-5);
+    tmp[n-5]=(char)0;
+    sprintf(fnOut1,"%s_maxima.dat",tmp);
+    printf("%-20s : %s\n","output file 1",fnOut1);
+
+    n=strlen(fnPDB);
+    strncpy(tmp,fnPDB,n-4);
+    tmp[n-4]=(char)0;
+    sprintf(fnOut2,"%s+shell-%.2fA.pdb",tmp,dist);
+    printf("%-20s : %s\n","output file 2",fnOut2);
 
     sscanf(argv[1],"%s",fnPDB);
     sscanf(argv[2],"%s",fnCUBE);
@@ -361,11 +383,8 @@ int main(int argc,char *argv[]) {
         memberCnt[j]++;
     }
     gridCrd=(t_vec*)malloc(nMax*sizeof(t_vec));
-    n=strlen(fnCUBE);
-    strncpy(tmp,fnCUBE,n-5);
-    tmp[n-5]=(char)0;
-    sprintf(fnOut,"%s_maxima.dat",tmp);
-    io=fopen(fnOut,"w");
+
+    io=fopen(fnOut1,"w");
     fprintf(io,"#Note: all reported indices start at 1 (not 0)\n");
     fprintf(io,"#%11s %11s %11s %7s %11s %11s %7s : %-16s\n",
         "x (A)","y (A)","z (A)"," index","peak","sum","nVoxels","member-indices");
@@ -406,11 +425,7 @@ int main(int argc,char *argv[]) {
     nMax=j;
     /*end*/
 
-    n=strlen(fnPDB);
-        strncpy(tmp,fnPDB,n-4);
-    tmp[n-4]=(char)0;
-        sprintf(fnOut,"%s+shell-%.2fA.pdb",tmp,dist);
-    io=fopen(fnOut,"w");
+    io=fopen(fnOut2,"w");
     writePDB(io,prot,0.0);
     for(l=0;l<nMax;l++) {
         fprintf(io,"HETATM%5d %4s %-4s %4d    %8.3f%8.3f%8.3f%6.2f%6.2f\n",

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
 
@@ -20,8 +21,10 @@ int main(int argc,char *argv[]) {
         exit(1);
     }
 
-    sscanf(argv[1],"%s",fnCUBE);
+    getString(argv[1],fnCUBE);
+    printf("%-20s : %s\n","input file 1",fnCUBE);
     readCUBE(fnCUBE,&gA,1.0,0);
+
     cpyCUBEformat(gA,&gOut);
     allocGrd(&gOut);
     for(i=0;i<gOut.dim[0];i++) {
@@ -33,8 +36,10 @@ int main(int argc,char *argv[]) {
     }
 
     for(n=2;n<argc-1;n++) {
-        sscanf(argv[n],"%s",fnCUBE);
+        getString(argv[n],fnCUBE);
+        printf("%-20s : %s %d\n","input file",fnCUBE,n);
         readCUBE(fnCUBE,&gA,1.0,0);
+    
         if(eqCUBEformat(gA,gOut)!=1) {
             printf("ERROR: incompatible grid formats:\n");
             printf(" %s\n",argv[1]);
@@ -50,7 +55,9 @@ int main(int argc,char *argv[]) {
         }
     }
 
-    sscanf(argv[argc-1],"%s",fnOut);
+    getString(argv[argc-1],fnOut);
+    printf("%-20s : %s\n","output file",fnOut);
+
     writeCUBE(fnOut,gOut,1.0,0);
 
     return 0;
