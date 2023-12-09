@@ -17,6 +17,7 @@ cubeSum
 cubeTitle
 resolvate
 )
+
 noFT=0
 if [ ! -z $1 ]; then
 if [ "$1" = "noFT" ] || [ "$1" != "cubeFilter" ]; then
@@ -24,6 +25,10 @@ noFT=1
 fi
 if [ "$1" != "noFT" ]; then
 exe=( $1 )
+if [ ! -f src/${exe}.c ]; then
+echo "not found: src/${exe}.c"
+exit
+fi
 fi
 fi
 
