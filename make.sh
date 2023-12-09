@@ -27,7 +27,7 @@ files=$(ls *.c)
 for f in ${files[@]}
 do
 echo "compiling functions/${f}"
-gcc -c ${f}
+gcc -c ${f} -lm -O3
 done
 cd ..
 files=$(ls *.c)
@@ -51,6 +51,6 @@ fi
 for x in ${exe[@]}
 do
 echo "linking ${x}.exe"
-gcc obj/functions/*.o obj/${x}.o -lfftw3f -o bin/${x}.exe
+gcc obj/functions/*.o obj/${x}.o -lfftw3f -lm -o bin/${x}.exe
 done
 cd ..

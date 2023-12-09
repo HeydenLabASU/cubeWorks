@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-O3 -w
+CFLAGS=-lm -O3
 FT=-lfftw3f
 OMP=-fopenmp
 

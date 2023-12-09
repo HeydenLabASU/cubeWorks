@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <fftw3.h>
 #include "../../include/types.h"
 #include "../../include/matvec.h"
