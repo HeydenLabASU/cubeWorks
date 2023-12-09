@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
 
@@ -21,17 +22,21 @@ int main(int argc,char *argv[]) {
         exit(1);
     }
 
-    sscanf(argv[1],"%s",fnCUBE);
-    readCUBE(fnCUBE,&gA,1.0,0);
-    sscanf(argv[2],"%f",&scale);
-    sscanf(argv[3],"%s",fnOut);
+    getString(argv[1],fnCUBE);
+    printf("%-20s : %s\n","input file",fnCUBE);
+
+    getFloat(argv[2],&scale);
+    printf("%-20s : %f\n","scaling factor",scale);
+
+    getString(argv[3],fnOut);
+    printf("%-20s : %s\n","output file",fnOut);
+
     if(argc>4) {
-        if(sscanf(argv[4],"%s",title)!=1) {
-            printf("ERROR: expected string but read '%s'\n",argv[4]);
-            exit(1);
-        }
-        sprintf(title,"%s",argv[4]);
+        getString(argv[4],title);
+        printf("%-20s : %s\n","output title",title);
     }
+
+    readCUBE(fnCUBE,&gA,1.0,0);
 
     for(i=0;i<gA.dim[0];i++) {
         for(j=0;j<gA.dim[1];j++) {

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
 
@@ -16,33 +17,35 @@ int main(int argc,char *argv[]) {
     t_vec trans;
 
     if(argc<6) {
-        printf("usage: ./cubeMove.exe A.cube dX dY dZ output.cube [output_title]\n");
+        printf("usage: ./cubeMove.exe input.cube dX dY dZ output.cube [output_title]\n");
         printf(" output.cube = A.cube + (dX dY dZ)\n");
         exit(1);
     }
 
-    sscanf(argv[1],"%s",fnCUBE);
-    readCUBE(fnCUBE,&gA,1.0,0);
-    sscanf(argv[2],"%f",&trans[0]);
-    sscanf(argv[3],"%f",&trans[1]);
-    sscanf(argv[4],"%f",&trans[2]);
-    sscanf(argv[5],"%s",fnOut);
+    getString(argv[1],fnCUBE);
+    printf("%-20s : %s\n","input file",fnCUBE);
+
+    getFloat(argv[2],&trans[0]);
+    getFloat(argv[3],&trans[1]);
+    getFloat(argv[4],&trans[2]);
+    printf("%-20s : %f %f %f\n","vector",trans[0],trans[1],trans[2]);
+
+    getString(argv[5],fnOut);
+    printf("%-20s : %s\n","output file",fnOut);
+
     if(argc>6) {
-        if(sscanf(argv[6],"%s",title)!=1) {
-            printf("ERROR: expected string but read '%s'\n",argv[6]);
-            exit(1);
-        }
-        sprintf(title,"%s",argv[6]);
+        getString(argv[6],title);
+        printf("%-20s : %s\n","output title",title);
     }
 
+    readCUBE(fnCUBE,&gA,1.0,0);
     vecAdd(gA.oriUHBD,trans,&gA.oriUHBD);
     vecAdd(gA.oriMH,trans,&gA.oriMH);
     vecAdd(gA.oriCUBE,trans,&gA.oriCUBE);
     for(i=0;gA.nAtoms;i++) {
         vecAdd(gA.atoms[i].crd,trans,&gA.atoms[i].crd);
     }
-    
-    if(argc>6) {
+        if(argc>6) {
         setCUBEtitle(&gA,title);
     }
     writeCUBE(fnOut,gA,1.0,0);

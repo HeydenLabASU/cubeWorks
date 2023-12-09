@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
 

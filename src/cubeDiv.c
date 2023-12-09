@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
 
@@ -23,13 +24,20 @@ int main(int argc,char *argv[]) {
         exit(1);
     }
 
-    sscanf(argv[1],"%s",fnCUBE);
+    getString(argv[1],fnCUBE);
+    printf("%-20s : %s\n","input file A",fnCUBE);
     readCUBE(fnCUBE,&gA,1.0,0);
-    sscanf(argv[2],"%s",fnCUBE);
+
+    getString(argv[2],fnCUBE);
+    printf("%-20s : %s\n","input file B",fnCUBE);
     readCUBE(fnCUBE,&gB,1.0,0);
-    sscanf(argv[3],"%s",fnOut);
+
+    getString(argv[3],fnOut);
+    printf("%-20s : %s\n","output file",fnOut);
+
     if(argc>4) {
-        sscanf(argv[4],"%f",&esc);
+        getFloat(argv[4],&esc);
+        printf("%-20s : %f\n","escape",esc);
     } else esc=0.0;
 
     if(eqCUBEformat(gA,gB)!=1) {

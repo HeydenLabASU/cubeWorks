@@ -9,6 +9,7 @@ cubeFilter
 cubeMax
 cubeMove
 cubeMult
+cubeRot
 cubeScale
 cubeScaleInv
 cubeSub

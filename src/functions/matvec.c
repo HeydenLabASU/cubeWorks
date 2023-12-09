@@ -45,6 +45,29 @@ int vecDot(t_vec a,t_vec b,double *res) {
     return 0;
 }
 
+int vecScale(double s,t_vec a,t_vec *b) {
+    b[0][0]=s*a[0];
+    b[0][1]=s*a[1];
+    b[0][2]=s*a[2];
+    return 0;
+}
+
+int vecAdd(t_vec a,t_vec b,t_vec *c) {
+    int i;
+    for(i=0;i<3;i++) {
+        c[0][i]=a[i]+b[i];
+    }
+    return 0;
+}
+
+int vecSub(t_vec a,t_vec b,t_vec *c) {
+    int i;
+    for(i=0;i<3;i++) {
+        c[0][i]=a[i]-b[i];
+    }
+    return 0;
+}
+
 int distPBC(t_vec a,t_vec b,float box,double *d) {
     t_vec l;
     linkPBC(a,b,box,&l);
@@ -132,7 +155,7 @@ int rotX(double angle,t_mat *rx) {
     return 0;
 }
 
-int rotAny(double angle,t_vec axis,t_mat *r) {
+/*int rotAny(double angle,t_vec axis,t_mat *r) {
     t_mat rx,rz,r1,r2,r3;
     double a1,a2;
     t_vec tmp;
@@ -156,20 +179,43 @@ int rotAny(double angle,t_vec axis,t_mat *r) {
     matTmat(rz,r1,r);
 
     return 0;
-}
+}*/
 
-int vecScale(double s,t_vec a,t_vec *b) {
-    b[0][0]=s*a[0];
-    b[0][1]=s*a[1];
-    b[0][2]=s*a[2];
-    return 0;
-}
+int rotAny(double angle,t_vec axis,t_mat *r) {
+    double norm;
+    t_vec normedAxis;
+    double a,b,c,d;
+    double aa,bb,cc,dd,bc,ad,ac,ab,bd,cd;
 
-int vecAdd(t_vec a,t_vec b,t_vec *c) {
-    int i;
-    for(i=0;i<3;i++) {
-        c[0][i]=a[i]+b[i];
-    }
+    vecNorm(axis,&norm);
+    vecScale(1/norm,axis,&normedAxis);
+
+    a=cos(angle/2.0);
+    b=-1.0*normedAxis[0]*sin(angle/2.0);
+    c=-1.0*normedAxis[1]*sin(angle/2.0);
+    d=-1.0*normedAxis[2]*sin(angle/2.0);
+
+    aa=a*a;
+    bb=b*b;
+    cc=c*c;
+    dd=d*d;
+    bc=b*c;
+    ad=a*d;
+    ac=a*c;
+    ab=a*b;
+    bd=b*d;
+    cd=c*d;
+
+    r[0][0][0]=aa+bb-cc-dd;
+    r[0][0][1]=2.0*(bc+ad);
+    r[0][0][2]=2.0*(bd-ac);
+    r[0][1][0]=2.0*(bc-ad);
+    r[0][1][1]=aa+cc-bb-dd;
+    r[0][1][2]=2.0*(cd+ab);
+    r[0][2][0]=2.0*(bd+ac);
+    r[0][2][1]=2.0*(cd-ab);
+    r[0][2][2]=aa+dd-bb-cc;
+
     return 0;
 }
 
@@ -193,14 +239,6 @@ int vecAdd3idx(t_vec a,int i,t_vec bi,int j,t_vec bj,int k,t_vec bk,t_vec *c) {
     int m;
     for(m=0;m<3;m++) {
         c[0][m]=a[m]+i*bi[m]+j*bj[m]+k*bk[m];
-    }
-    return 0;
-}
-
-int vecSub(t_vec a,t_vec b,t_vec *c) {
-    int i;
-    for(i=0;i<3;i++) {
-        c[0][i]=a[i]-b[i];
     }
     return 0;
 }

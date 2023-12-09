@@ -14,11 +14,18 @@ int main(int argc,char *argv[]) {
     t_grid g;
 
     if(argc<3) {
-        printf("usage: ./cubeTitle.exe input.cube \"new_title\"\n");
+        printf("usage: ./cubeDelAtoms.exe input.cube\n");
         exit(1);
     }
 
     strcpy(fnInput,argv[1]);
+    i=strlen(fnInput);
+    if(strncmp(&fnInput[i-5],".cube",5)!=0) {
+        printf("ERROR: expected inpute file extension \".cube\", but read %s\n",&fnInput[i-5]);
+        exit(1);
+    }
+    printf("%-20s : %s\n","input cube file",fnInput);
+
     
     if(sscanf(argv[2],"%s",title)!=1) {
         printf("ERROR: expected string but read '%s'\n",argv[2]);

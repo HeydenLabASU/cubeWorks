@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/grids.h"
 
 int main(int argc,char *argv[]) {
@@ -15,44 +16,29 @@ int main(int argc,char *argv[]) {
     t_grid g;
 
     if(argc<2) {
-        printf("ERROR: need input file name\n");
         printf("usage: ./convert-cube input.cube [output_filename] [scaling factor] [\"output_title\"]\n");
         exit(1);
     }
 
-    strcpy(fnInput,argv[1]);
-    i=strlen(fnInput);
-    if(strncmp(&fnInput[i-5],".cube",5)!=0) {
-        printf("ERROR: expected inpute file extension \".cube\", but read %s\n",&fnInput[i-5]);
-        exit(1);
-    }
-    printf("%-20s : %s\n","input cube file",fnInput);
+    getString(argv[1],fnInput);
+    printf("%-20s : %s\n","input file",fnInput);
 
     if(argc>2) {
-        if(sscanf(argv[2],"%s",fnOutput)!=1) {
-            printf("ERROR: expected string but read '%s'\n",argv[2]);
-            exit(1);
-        }
+        getString(argv[2],fnOutput);
     } else {
         strcpy(fnOutput,fnInput);
         sprintf(&fnOutput[i-5],"%s",".dat");
     }
-    printf("%-20s : %s\n","output data file",fnOutput);
+    printf("%-20s : %s\n","output file",fnOutput);
 
     if(argc>3) {
-        if(sscanf(argv[3],"%f",&scale)!=1) {
-            printf("ERROR: expected floating point number but read '%s'\n",argv[3]);
-            exit(1);
-        }
+        getFloat(argv[3],&scale);
         printf("%-20s : %f\n","scaling factor",scale);
     }
     if(argc>4) {
-        if(sscanf(argv[4],"%s",title)!=1) {
-            printf("ERROR: expected string but read '%s'\n",argv[4]);
-            exit(1);
-        }
-        sprintf(title,"%s",argv[4]);
+        getString(argv[4],title);
     }
+
     readCUBE(fnInput,&g,scale,0);
     if(g.aligned!=1 || g.orthorhombic!=1) {
         printf("ERROR: grid with non-orthorhombic/non-aligned voxels\n");

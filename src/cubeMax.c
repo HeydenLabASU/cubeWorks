@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/types.h"
+#include "../include/get.h"
 #include "../include/matvec.h"
 #include "../include/grids.h"
 #include "../include/qsort.h"
@@ -213,7 +214,14 @@ int main(int argc,char *argv[]) {
         exit(1);
     }
 
-    sscanf(argv[1],"%s",fnCUBE);
+    getString(argv[1],fnCUBE);
+    printf("%-20s : %s\n","input file",fnCUBE);
+
+    n=strlen(fnCUBE);
+    strncpy(tmp,fnCUBE,n-5);
+    tmp[n-5]=(char)0;
+    sprintf(fnOut,"%s_maxima.dat",tmp);
+    printf("%-20s : %s\n","output file",fnOut);
 
     readCUBE(fnCUBE,&g,1.0,0);
     
@@ -338,11 +346,8 @@ int main(int argc,char *argv[]) {
         members[j][memberCnt[j]]=l;
         memberCnt[j]++;
     }
+
     gridCrd=(t_vec*)malloc(nMax*sizeof(t_vec));
-    n=strlen(fnCUBE);
-    strncpy(tmp,fnCUBE,n-5);
-    tmp[n-5]=(char)0;
-    sprintf(fnOut,"%s_maxima.dat",tmp);
     io=fopen(fnOut,"w");
     fprintf(io,"#Note: all reported indices start at 1 (not 0)\n");
     fprintf(io,"#%11s %11s %11s% 7s %11s %11s %7s : %-16s\n",
