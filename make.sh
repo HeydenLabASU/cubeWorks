@@ -52,7 +52,7 @@ mv src/functions/*.o obj/functions/
 if [ -f obj/functions/filter.o ]; then
 rm obj/functions/filter.o
 fi
-if [ "$1"!="cubeFilter" ]; then
+if [ "$1" != "cubeFilter" ]; then
 mv src/*.o obj/
 fi
 mkdir -p bin
