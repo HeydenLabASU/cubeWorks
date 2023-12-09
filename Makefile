@@ -65,8 +65,11 @@ cubeTitle: $(OBJS)
 reolvate: $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-$(ODIR)/%.o: src/%.c $(DEPS)
+$(ODIR)/%.o: src/functions/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-$(ODIR)/filter.o: src/filter.c $(DEPS)
+$(ODIR)/filter.o: src/functions/filter.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS) $(FT)
+
+$(ODIR)/%.o: src/%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)

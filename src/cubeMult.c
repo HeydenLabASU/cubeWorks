@@ -34,7 +34,7 @@ int main(int argc,char *argv[]) {
     printf("%-20s : %s\n","output file",fnOut);
 
     if(argc>4) {
-        getSring(argv[4],title);
+        getString(argv[4],title);
         printf("%-20s : %s\n","output title",title);
     }
 
