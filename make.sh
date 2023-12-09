@@ -19,7 +19,7 @@ resolvate
 )
 noFT=0
 if [ ! -z $1 ]; then
-if [ "$1" = "noFT" ]; then
+if [ "$1" = "noFT" ] && [ "$1" != "cubeFilter" ]; then
 noFT=1
 else
 exe=( $1 )
