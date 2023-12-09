@@ -33,7 +33,7 @@ cubeAdd: $(ODIR)/cubeAdd.o $(OBJS)
 cubeDiv: $(ODIR)/cubeDiv.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
-cubeFilter: $(ODIR)/cubeFilter.o $(OBJS) obj/filter.o
+cubeFilter: $(ODIR)/cubeFilter.o $(OBJS) obj/functions/filter.o
 	$(CC) -o bin/$@ $^ $(CFLAGS) $(FT)
 
 cubeMax: $(ODIR)/cubeMax.o $(OBJS)
