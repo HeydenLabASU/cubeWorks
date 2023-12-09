@@ -10,10 +10,7 @@ BDIR=bin
 _DEPS = types.h get.h matvec.h grids.h pdbio.h qsort.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJS = get.o matvec.o grids.o pdbio.o qsort.o \
-cube2dat.o cubeAdd.o cubeDiv.o cubeFilter.o cubeMax.o \
-cubeMove.o cubeMult.o cubeRot.o cubeScale.o cubeScaleInv.o \
-cubeSub.o cubeSum.o cubeTitle.o resolvate.o
+_OBJS = get.o matvec.o grids.o pdbio.o qsort.o
 OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 
 $(shell mkdir -p obj)
@@ -23,46 +20,46 @@ all: cube2dat cubeAdd cubeDiv cubeFilter cubeMax \
 cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
 cubeSub cubeSum cubeTitle resolvate
 
-cube2dat: $(OBJS)
+cube2dat: $(ODIR)/cube2dat.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeAdd: $(OBJS)
+cubeAdd: $(ODIR)/cubeAdd.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeDiv: $(OBJS)
+cubeDiv: $(ODIR)/cubeDiv.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeFilter: $(OBJS) obj/filter.o
+cubeFilter: $(ODIR)/cubeFilter.o $(OBJS) obj/filter.o
 	$(CC) -o bin/$@ $^ $(OBJS) obj/filter.o $(CFLAGS) $(FT)
 
-cubeMax: $(OBJS)
+cubeMax: $(ODIR)/cubeMax.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeMove: $(OBJS)
+cubeMove: $(ODIR)/cubeMove.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeMult: $(OBJS)
+cubeMult: $(ODIR)/cubeMult.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeRot: $(OBJS)
+cubeRot: $(ODIR)/cubeRot.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeScale: $(OBJS)
+cubeScale: $(ODIR)/cubeScale.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeScaleInv: $(OBJS)
+cubeScaleInv: $(ODIR)/cubeScaleInv.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeSub: $(OBJS)
+cubeSub: $(ODIR)/cubeSub.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeSum: $(OBJS)
+cubeSum: $(ODIR)/cubeSum.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-cubeTitle: $(OBJS)
+cubeTitle: $(ODIR)/cubeTitle.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
-reolvate: $(OBJS)
+reolvate: $(ODIR)/resolvate.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(OBJS) $(CFLAGS)
 
 $(ODIR)/%.o: src/functions/%.c $(DEPS)
