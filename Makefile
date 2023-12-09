@@ -10,9 +10,10 @@ _DEPS = types.h get.h matvec.h grids.h pdbio.h qsort.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 _OBJS = get.o matvec.o grids.o pdbio.o qsort.o
-OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
+OBJS = $(patsubst %,$(ODIR)/functions/%,$(_OBJS))
 
 $(shell mkdir -p obj)
+$(shell mkdir -p obj/functions)
 $(shell mkdir -p bin)
 
 all: cube2dat cubeAdd cubeDiv cubeFilter cubeMax \
@@ -65,10 +66,10 @@ cubeTitle: $(ODIR)/cubeTitle.o $(OBJS)
 resolvate: $(ODIR)/resolvate.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
-$(ODIR)/%.o: src/functions/%.c $(DEPS)
+$(ODIR)/functions/%.o: src/functions/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-$(ODIR)/filter.o: src/functions/filter.c $(DEPS)
+$(ODIR)/functions/filter.o: src/functions/filter.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS) $(FT)
 
 $(ODIR)/%.o: src/%.c $(DEPS)
