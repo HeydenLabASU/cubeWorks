@@ -19,7 +19,7 @@ resolvate
 )
 noFT=0
 if [ ! -z $1 ]; then
-if [ "$1" = "noFT" ] && [ "$1" != "cubeFilter" ]; then
+if [ "$1" = "noFT" ] || [ "$1" != "cubeFilter" ]; then
 noFT=1
 else
 exe=( $1 )
@@ -37,12 +37,11 @@ gcc -c ${f} -lm -O3
 fi
 done
 cd ..
-files=$(ls *.c)
-for f in ${files[@]}
+for f in ${exe[@]}
 do
-if [ "$f" != "cubeFilter.c" ]; then
-echo "compiling ${f}"
-gcc -c ${f} -lm -O3
+if [ "$f" != "cubeFilter" ]; then
+echo "compiling ${f}.c"
+gcc -c ${f}.c -lm -O3
 fi
 done
 cd ..
