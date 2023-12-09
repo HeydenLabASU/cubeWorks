@@ -16,12 +16,12 @@ $(shell mkdir -p obj)
 $(shell mkdir -p obj/functions)
 $(shell mkdir -p bin)
 
-all: cube2dat cubeAdd cubeDiv cubeFilter cubeMax \
-cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
+all: cube2dat cubeAdd cubeCenter cubeDelAtoms cubeDiv cubeFilter \
+cubeMax cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
 cubeSub cubeSum cubeTitle resolvate
 
-noFT: cube2dat cubeAdd cubeDiv cubeMax \
-cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
+noFT: cube2dat cubeAdd cubeCenter cubeDelAtoms cubeDiv \
+cubeMax cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
 cubeSub cubeSum cubeTitle resolvate
 
 cube2dat: $(ODIR)/cube2dat.o $(OBJS)

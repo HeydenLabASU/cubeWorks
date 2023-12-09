@@ -18,7 +18,7 @@ int main(int argc,char *argv[]) {
     int flag=0;
 
     if(argc<4) {
-        printf("usage: ./cubeDiv.exe A.cube B.cube output.cube [escape]\n");
+        printf("usage: cubeDiv A.cube B.cube output.cube [escape]\n");
         printf(" output.cube = A.cube / B.cube\n");
         printf(" escape: result division by zero\n");
         exit(1);

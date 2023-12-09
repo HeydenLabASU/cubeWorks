@@ -17,7 +17,7 @@ int main(int argc,char *argv[]) {
     t_vec trans;
 
     if(argc<6) {
-        printf("usage: ./cubeMove.exe input.cube dX dY dZ output.cube [output_title]\n");
+        printf("usage: cubeMove input.cube dX dY dZ output.cube [output_title]\n");
         printf(" output.cube = A.cube + (dX dY dZ)\n");
         exit(1);
     }

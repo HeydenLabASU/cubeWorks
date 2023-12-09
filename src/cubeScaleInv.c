@@ -17,7 +17,7 @@ int main(int argc,char *argv[]) {
     float scale;
 
     if(argc<4) {
-        printf("usage: ./cubeScaleInv.exe A.cube scale output.cube [output_title]\n");
+        printf("usage: cubeScaleInv A.cube scale output.cube [output_title]\n");
         printf(" output.cube = A.cube / scale\n");
         exit(1);
     }

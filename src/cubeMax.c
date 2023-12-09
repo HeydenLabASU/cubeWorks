@@ -209,7 +209,7 @@ int main(int argc,char *argv[]) {
     int *pos;
 
     if(argc<2) {
-        printf("usage: ./findMax.exe input.cube\n");
+        printf("usage: cubeMax input.cube\n");
         printf(" input.cube: cube file with density\n");
         exit(1);
     }

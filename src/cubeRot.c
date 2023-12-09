@@ -19,7 +19,7 @@ int main(int argc,char *argv[]) {
     t_mat rot;
 
     if(argc<7) {
-        printf("usage: ./cubeRot.exe A.cube axisX axisY axisZ angle output.cube [output_title]\n");
+        printf("usage: cubeRot A.cube axisX axisY axisZ angle output.cube [output_title]\n");
         printf(" output.cube = rot(axis,angle) @ A.cube\n");
         exit(1);
     }

@@ -16,7 +16,7 @@ int main(int argc,char *argv[]) {
     t_grid g;
 
     if(argc<2) {
-        printf("usage: ./convert-cube input.cube [output_filename] [scaling factor] [\"output_title\"]\n");
+        printf("usage: cube2dat input.cube [output_filename] [scaling factor] [\"output_title\"]\n");
         exit(1);
     }
 

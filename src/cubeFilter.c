@@ -16,7 +16,7 @@ int main(int argc,char *argv[]) {
     float sigma;
 
     if(argc<3) {
-        printf("usage: ./cubeFilter.exe input.cube sigma\n");
+        printf("usage: cubeFilter input.cube sigma\n");
         printf(" input.cube: cube file to apply filter on\n");
         printf(" sigma     : sigma of Gaussian filter (Angstrom)\n");
         exit(1);

@@ -15,7 +15,7 @@ int main(int argc,char *argv[]) {
     int i,j,k,m;
 
     if(argc<4) {
-        printf("usage: ./cubeAdd.exe A.cube B.cube output.cube [output_title]\n");
+        printf("usage: cubeAdd A.cube B.cube output.cube [output_title]\n");
         printf(" output.cube = A.cube + B.cube\n");
         exit(1);
     }
