@@ -1,7 +1,6 @@
 CC=gcc
 CFLAGS=-lm -O3
 FT=-lfftw3f
-OMP=-fopenmp
 
 IDIR=include
 ODIR=obj
