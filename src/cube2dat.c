@@ -4,6 +4,7 @@
 #include <math.h>
 #include "../include/types.h"
 #include "../include/get.h"
+#include "../include/matvec.h"
 #include "../include/grids.h"
 #include "../include/cubeWorks.h"
 
@@ -43,18 +44,10 @@ int main(int argc,char *argv[]) {
     }
 
     readCUBE(fnInput,&g,scale,0);
-    if(g.aligned!=1 || g.orthorhombic!=1) {
-        fprintf(stderr,"ERROR: grid with non-orthorhombic/non-aligned voxels\n");
-        fprintf(stderr,"       cannot write in simple data format\n");
-        exit(1);
-    }
+
     if(argc>4) {
         setCUBEtitle(&g,title);
     }
-
-    printf("%-20s : %s\n","output file title",g.title);
-    printf("%-20s : %f %f %f\n","grid origin (A)",g.oriCUBE[0],g.oriCUBE[1],g.oriCUBE[2]);
-    printf("%-20s : %f %f %f\n","voxel dimensions (A)",g.a[0],g.b[1],g.c[2]);
 
     gCrd=(float**)malloc(g.nVoxel*sizeof(float*));
     for(i=0;i<g.nVoxel;i++) {
@@ -64,9 +57,7 @@ int main(int argc,char *argv[]) {
     for(i=0;i<g.dim[0];i++) {
         for(j=0;j<g.dim[1];j++) {
             for(k=0;k<g.dim[2];k++) {
-                gCrd[m][0]=g.oriCUBE[0]+i*g.a[0];
-                gCrd[m][1]=g.oriCUBE[1]+j*g.b[1];
-                gCrd[m][2]=g.oriCUBE[2]+k*g.c[2];
+                vecAdd3idx(g.oriCUBE,i,g.a,j,g.b,k,g.c,&gCrd[m]);
                 m++;
             }
         }
@@ -75,7 +66,6 @@ int main(int argc,char *argv[]) {
     io=fopen(fnOutput,"w");
     fprintf(io,"#%s\n",title);
     fprintf(io,"#grid dimension: %4d %4d %4d\n",g.dim[0],g.dim[1],g.dim[2]);
-    fprintf(io,"#voxel size (A): %f %f %f\n",g.a[0],g.b[1],g.c[2]);
     fprintf(io,"#x (A)       y (A)        z (A)        (see title)\n");
     i=0;
     j=0;

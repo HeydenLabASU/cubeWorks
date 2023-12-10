@@ -22,7 +22,7 @@ int main(int argc,char *argv[]) {
     if(argc<4) {
         printf("usage: cubeDiv A.cube B.cube output.cube [escape]\n");
         printf(" output.cube = A.cube / B.cube\n");
-        printf(" escape: result division by zero\n\n");
+        printf(" escape: result of division by zero\n\n");
         exit(1);
     }
 
