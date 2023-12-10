@@ -45,7 +45,7 @@ int main(int argc,char *argv[]) {
     vecAdd(g.oriUHBD,trans,&g.oriUHBD);
     vecAdd(g.oriMH,trans,&g.oriMH);
     vecAdd(g.oriCUBE,trans,&g.oriCUBE);
-    for(i=0;g.nAtoms;i++) {
+    for(i=0;i<g.nAtoms;i++) {
         vecAdd(g.atoms[i].crd,trans,&g.atoms[i].crd);
     }
         if(argc>6) {
