@@ -11,16 +11,16 @@ The cubeWorks package contains a group of programs to perform useful operations 
 - enter the cubeWorks directory
 - compile with GNU make
     - type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))  
-    OR
+    or
     - type `make noFT` to compile without fftw3 (no cubeFilter)
 - make cubeWorks binaries findable
-    - add cubeWorks/bin to $PATH:
-    `dir=$(pwd)`
-    `echo "export PATH=$PATH:${dir}/bin" \>& ~/.bash_profile`
-    OR
-    - copy contents of cubeWorks/bin to usr/local/bin:
-    `sudo cp bin/* usr/local/bin/`
-    OR
-    - ...
+    - add cubeWorks/bin to $PATH:  
+    `dir=$(pwd)`  
+    `echo "export PATH=$PATH:${dir}/bin" \>& ~/.bash_profile`  
+    or
+    - copy contents of cubeWorks/bin to usr/local/bin:  
+    `sudo cp bin/* usr/local/bin/`  
+    or
+    - ...  
 
 </details>
