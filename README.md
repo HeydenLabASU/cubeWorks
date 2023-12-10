@@ -43,11 +43,11 @@ Command line arguments in square brackets (`[
 <details>
   <summary>cube2dat</summary>
 
-> `usage: cube2dat input.cube [output_filename] [scaling factor] ["output_title"]`  
-> 
-> This program converts the file `input.cube` into a simple ASCI data table with explicitly written x, y and z coordinates.  
-> If the optional `output_filename` is not specified, the `.cube` extension of the input file will be replaced by `.dat`.  
-> The volume data in `input.cube` can be scaled with the optional parameter `scaling_factor`, which is 1.0 by default.  
-> A title is written in the first of 4 header lines of the output file. By default, the title is taken from the header of the `input.cube` file, but optionally this title can be provide as a command line argument (white spaces in output_title currently not supported).
+> `usage: cube2dat input.cube [output_filename] [scaling factor] ["output_title"]`
+>
+> - converts file `input.cube` into ASCII data file with explicitly written x, y and z coordinates  
+> - if `output_filename` is not specified, the `.cube` extension of the input file is replaced by `.dat`  
+> - volume data in `input.cube` can be scaled with `scaling_factor`  
+> - A title is written in first of 4 header lines of output file. By default, title is taken from header of `input.cube` file, but optionally a new title can be provided on command line (white spaces in `output_title` currently not supported).
 
   </details>
