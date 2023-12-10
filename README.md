@@ -37,6 +37,7 @@ All cubeWorks programs print a short usage, *e.g.*
 
 <details>
   <summary>cube2dat</summary>
-
-
+>  
+>`usage: cube2dat input.cube [output_filename] [scaling factor] ["output_title"]`  
+>
   </details>
