@@ -16,11 +16,11 @@ $(shell mkdir -p obj)
 $(shell mkdir -p obj/functions)
 $(shell mkdir -p bin)
 
-all: cube2dat cubeAdd cubeAver cubeCenter cubeDelAtoms cubeDiv cubeFilter \
+all: cube2dat cubeAdd cubeAver cubeCenter cubeDiv cubeFilter \
 cubeMax cubeMirror cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
 cubeSub cubeSum cubeTitle resolvate
 
-noFT: cube2dat cubeAdd cubeAver cubeCenter cubeDelAtoms cubeDiv \
+noFT: cube2dat cubeAdd cubeAver cubeCenter cubeDiv \
 cubeMax cubeMirror cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
 cubeSub cubeSum cubeTitle resolvate
 
@@ -34,9 +34,6 @@ cubeAver: $(ODIR)/cubeAver.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeCenter: $(ODIR)/cubeCenter.o $(OBJS)
-	$(CC) -o bin/$@ $^ $(CFLAGS)
-
-cubeDelAtoms: $(ODIR)/cubeDelAtoms.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeDiv: $(ODIR)/cubeDiv.o $(OBJS)
