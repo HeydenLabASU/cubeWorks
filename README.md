@@ -1,6 +1,6 @@
 # cubeWorks
 
-The cubeWorks package contains a group of programs to perform operations on files in the [Gaussian cube format](https://paulbourke.net/dataformats/cube/). 
+The cubeWorks package contains a group of programs to perform operations on files in the [Gaussian cube format](https://paulbourke.net/dataformats/cube/). This format (initially developed for electron densities) is used for multiple output files by [3D-2PT](https://github.com/MatthiasHeyden/3D-2PT).
 
 ## Installation
 
