@@ -49,6 +49,9 @@ int main(int argc,char *argv[]) {
     readCUBE(fnCUBE,&g,1.0,0);
 
     rotAny(angle,axis,&rot);
+    printf("%f %f %f\n",rot[0][0],rot[0][1],rot[0][2]);
+    printf("%f %f %f\n",rot[1][0],rot[1][1],rot[1][2]);
+    printf("%f %f %f\n",rot[2][0],rot[2][1],rot[2][2]);
     matvec(rot,g.oriUHBD,&g.oriUHBD);
     matvec(rot,g.oriMH,&g.oriMH);
     matvec(rot,g.oriCUBE,&g.oriCUBE);
