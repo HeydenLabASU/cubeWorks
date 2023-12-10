@@ -13,7 +13,7 @@ The cubeWorks package contains a group of programs to perform useful operations 
 - compile with [GNU make](www.gnu.org/software/make/)
     - type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))  
     or
-    - type `make noFT` to compile without fftw3 (no **cubeFilter**)
+    - type `make noFT` to compile without -lfftw3f (skips compilation of **cubeFilter**)
 - make **cubeWorks** binaries findable
     - add cubeWorks/bin to $PATH:  
     `dir=$(pwd)`  
@@ -25,3 +25,10 @@ The cubeWorks package contains a group of programs to perform useful operations 
     - ...  
 
 </details>
+
+## Using cubeWorks
+
+All cubeWorks programs print a short usage, *e.g.*  
+`user@localhost:~]$ cubeAdd`
+`usage: cubeAdd A.cube B.cube output.cube [output_title]`
+` output.cube = A.cube + B.cube`
