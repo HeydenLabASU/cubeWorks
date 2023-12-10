@@ -8,7 +8,7 @@ The cubeWorks package contains a group of programs to perform useful operations 
   <summary>UNIX Terminal</summary>
 
 - download and unzip the source code
-- enter the <span style="font-family:Courier">cubeWorks</span> directory
+- enter <span style="color:red">cubeWorks</span> directory
 - compile with GNU make
     - type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))  
     or
