@@ -1,6 +1,6 @@
 # cubeWorks
 
-The cubeWorks package contains a group of programs to perform useful operations on files in the [Gaussian cube format](https://paulbourke.net/dataformats/cube/). 
+The cubeWorks package contains a group of programs to perform operations on files in the [Gaussian cube format](https://paulbourke.net/dataformats/cube/). 
 
 ## Installation
 
