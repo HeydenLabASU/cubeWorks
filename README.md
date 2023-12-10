@@ -4,7 +4,7 @@ The cubeWorks package contains a group of programs to perform useful operations 
 
 ## Installation (UNIX terminal)
 
-<details markdown='1'>
+<details markdown='2'>
   <summary>expand</summary>
 
 - Download and unzip the source code
