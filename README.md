@@ -1,4 +1,4 @@
-# cubeWorks
+# <span style="font-family:Monaco"><b>cubeWorks</b></span>
 
 The cubeWorks package contains a group of programs to perform useful operations on files in the [Gaussian cube format](https://paulbourke.net/dataformats/cube/). 
 
