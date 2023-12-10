@@ -9,9 +9,9 @@ The cubeWorks package contains a group of programs to perform useful operations 
 
 - Download and unzip the source code
 - Enter the cubeWorks directory
-- type `make` to compile all programs
-- type `make noFT` to compile all programs other than cubeFilter
-    - (cubeFilter relies on single-precision version of [FFTW3](www.fftw.org) library)
+- type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))
+OR
+- type `make noFT` to compile without fftw3 (no cubeFilter)
 - add cubeWorks/bin to your $PATH, copy contents of cubeWorks/bin
 
 </details>
