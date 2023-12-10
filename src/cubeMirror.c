@@ -57,8 +57,8 @@ int main(int argc,char *argv[]) {
                 for(k=0;k<g.dim[2]/2;k++) {
                     l=g.dim[2]-k-1;
                     aver=(g.grid[i][j][k]+g.grid[i][j][l])/2.0;
-                    gA.grid[i][j][k]=aver;
-                    gA.grid[i][j][l]=aver;
+                    g.grid[i][j][k]=aver;
+                    g.grid[i][j][l]=aver;
                 }
             }
         }
@@ -68,8 +68,8 @@ int main(int argc,char *argv[]) {
                 l=g.dim[1]-j-1;
                 for(k=0;k<g.dim[2]/2;k++) {
                     aver=(g.grid[i][j][k]+g.grid[i][l][k])/2.0;
-                    gA.grid[i][j][k]=aver;
-                    gA.grid[i][l][k]=aver;
+                    g.grid[i][j][k]=aver;
+                    g.grid[i][l][k]=aver;
                 }
             }
         }
@@ -80,8 +80,8 @@ int main(int argc,char *argv[]) {
                 l=g.dim[1]-j-1;
                 for(k=0;k<g.dim[2]/2;k++) {
                     aver=(g.grid[i][j][k]+g.grid[l][j][k])/2.0;
-                    gA.grid[i][j][k]=aver;
-                    gA.grid[l][j][k]=aver;
+                    g.grid[i][j][k]=aver;
+                    g.grid[l][j][k]=aver;
                 }
             }
         }
