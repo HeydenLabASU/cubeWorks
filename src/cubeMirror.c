@@ -18,7 +18,7 @@ int main(int argc,char *argv[]) {
     char plane[3];
     double aver;
 
-    printName("cubeMirrpr");
+    printName("cubeMirror");
 
     if(argc<4) {
         printf("usage: cubeScale input.cube plane output.cube [output_title]\n");
@@ -64,9 +64,9 @@ int main(int argc,char *argv[]) {
         }
     } else if(strncmp(plane,"XZ",2)==0) {
         for(i=0;i<g.dim[0];i++) {
-            for(j=0;j<g.dim[1];j++) {
+            for(j=0;j<g.dim[1]/2;j++) {
                 l=g.dim[1]-j-1;
-                for(k=0;k<g.dim[2]/2;k++) {
+                for(k=0;k<g.dim[2];k++) {
                     aver=(g.grid[i][j][k]+g.grid[i][l][k])/2.0;
                     g.grid[i][j][k]=aver;
                     g.grid[i][l][k]=aver;
@@ -74,11 +74,11 @@ int main(int argc,char *argv[]) {
             }
         }
     } else if(strncmp(plane,"YZ",2)==0) {
-        for(i=0;i<g.dim[0];i++) {
+        for(i=0;i<g.dim[0]/2;i++) {
             l=g.dim[0]-i-1;
             for(j=0;j<g.dim[1];j++) {
                 l=g.dim[1]-j-1;
-                for(k=0;k<g.dim[2]/2;k++) {
+                for(k=0;k<g.dim[2];k++) {
                     aver=(g.grid[i][j][k]+g.grid[l][j][k])/2.0;
                     g.grid[i][j][k]=aver;
                     g.grid[l][j][k]=aver;
