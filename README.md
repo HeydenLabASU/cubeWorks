@@ -29,6 +29,6 @@ The cubeWorks package contains a group of programs to perform useful operations 
 ## Using cubeWorks
 
 All cubeWorks programs print a short usage, *e.g.*  
-`user@localhost:~]$ cubeAdd`
-`usage: cubeAdd A.cube B.cube output.cube [output_title]`
-` output.cube = A.cube + B.cube`
+`user@localhost:~]$ cubeAdd`  
+`usage: cubeAdd A.cube B.cube output.cube [output_title]`  
+` output.cube = A.cube + B.cube`  
