@@ -14,7 +14,7 @@ int main(int argc,char *argv[]) {
     char tmp[100];
     FILE *io;
     t_grid g;
-    int i,j,k,m;
+    int i,j,k,l;
     char plane[3];
     double aver;
 
