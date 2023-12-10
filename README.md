@@ -17,13 +17,13 @@ The cubeWorks package contains a group of programs to perform useful operations 
 >- make **cubeWorks** binaries findable
 >    - add cubeWorks/bin to $PATH:  
 >    `dir=$(pwd)`  
->    `echo "export PATH=$PATH:${dir}/bin" \>& ~/.bash_profile`  
+>    `echo "export PATH=$PATH:${dir}/bin" >> ~/.bash_profile`  
 >    or
 >    - copy contents of cubeWorks/bin to usr/local/bin:  
 >    `sudo cp bin/* usr/local/bin/`  
 >    or
 >    - ...  
->
+
 </details>
 
 ## Using cubeWorks
@@ -37,7 +37,7 @@ All cubeWorks programs print a short usage, *e.g.*
 
 <details>
   <summary>cube2dat</summary>
->  
+ 
 >`usage: cube2dat input.cube [output_filename] [scaling factor] ["output_title"]`  
->
+
   </details>
