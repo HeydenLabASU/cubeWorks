@@ -21,7 +21,7 @@ int main(int argc,char *argv[]) {
 
     if(argc<4) {
         printf("usage: cubeScale input.cube scale output.cube [output_title]\n");
-        printf(" output.cube = scale * input.cube\n");
+        printf(" output.cube = scale * input.cube\n\n");
         exit(1);
     }
 

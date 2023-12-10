@@ -19,7 +19,7 @@ int main(int argc,char *argv[]) {
     printName("cube2dat");
 
     if(argc<2) {
-        printf("usage: cube2dat input.cube [output_filename] [scaling factor] [\"output_title\"]\n");
+        printf("usage: cube2dat input.cube [output_filename] [scaling factor] [\"output_title\"]\n\n");
         exit(1);
     }
 

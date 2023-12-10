@@ -20,7 +20,7 @@ int main(int argc,char *argv[]) {
 
     if(argc<4) {
         printf("usage: cubeAver A.cube B.cube ... output.cube\n");
-        printf(" output.cube = (A.cube + B.cube + ...) / N\n");
+        printf(" output.cube = (A.cube + B.cube + ...) / N\n\n");
         exit(1);
     }
 

@@ -23,7 +23,7 @@ int main(int argc,char *argv[]) {
 
     if(argc<7) {
         printf("usage: cubeRot A.cube axisX axisY axisZ angle output.cube [output_title]\n");
-        printf(" output.cube = rot(axis,angle) @ input.cube\n");
+        printf(" output.cube = rot(axis,angle) @ input.cube\n\n");
         exit(1);
     }
 

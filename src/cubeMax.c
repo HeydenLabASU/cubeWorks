@@ -213,7 +213,7 @@ int main(int argc,char *argv[]) {
 
     if(argc<2) {
         printf("usage: cubeMax input.cube\n");
-        printf(" input.cube: cube file with density\n");
+        printf(" input.cube: cube file with density\n\n");
         exit(1);
     }
 

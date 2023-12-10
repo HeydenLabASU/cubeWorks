@@ -19,7 +19,7 @@ int main(int argc,char *argv[]) {
     printName("cubeCenter");
 
     if(argc<3) {
-        printf("usage: cubeCenter input.cube output.cube [output title]\n");
+        printf("usage: cubeCenter input.cube output.cube [output title]\n\n");
         exit(1);
     }
 

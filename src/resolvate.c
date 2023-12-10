@@ -232,7 +232,7 @@ int main(int argc,char *argv[]) {
     if(argc<4) {
         printf("usage: resolvate input.pdb input.cube dist\n");
         printf(" input.pdb : structure file to be solvated\n");
-        printf(" input.cube: cube file with water density\n");
+        printf(" input.cube: cube file with water density\n\n");
         exit(1);
     }
 

@@ -16,7 +16,7 @@ int main(int argc,char *argv[]) {
     printName("cubeDelAtoms");
 
     if(argc<2) {
-        printf("usage: cubeDelAtoms input.cube\n");
+        printf("usage: cubeDelAtoms input.cube\n\n");
         exit(1);
     }
 

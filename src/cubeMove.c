@@ -21,7 +21,7 @@ int main(int argc,char *argv[]) {
 
     if(argc<6) {
         printf("usage: cubeMove input.cube dX dY dZ output.cube [output_title]\n");
-        printf(" output.cube = input.cube + (dX dY dZ)\n");
+        printf(" output.cube = input.cube + (dX dY dZ)\n\n");
         exit(1);
     }
 
