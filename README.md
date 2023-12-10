@@ -10,11 +10,11 @@ The cubeWorks package contains a group of programs to perform useful operations 
 - download and unzip the source code
 - enter **cubeWorks** directory, *e.g.*  
 `cd cubeWorks-1.0`
-- compile with GNU make
+- compile with [GNU make](www.gnu.org/software/make/)
     - type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))  
     or
-    - type `make noFT` to compile without fftw3 (no cubeFilter)
-- make cubeWorks binaries findable
+    - type `make noFT` to compile without fftw3 (no **cubeFilter**)
+- make **cubeWorks** binaries findable
     - add cubeWorks/bin to $PATH:  
     `dir=$(pwd)`  
     `echo "export PATH=$PATH:${dir}/bin" \>& ~/.bash_profile`  
