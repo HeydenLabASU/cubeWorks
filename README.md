@@ -1,4 +1,4 @@
-# <span style="font-family:Courier"><b>cubeWorks</b></span>
+# cubeWorks
 
 The cubeWorks package contains a group of programs to perform useful operations on files in the [Gaussian cube format](https://paulbourke.net/dataformats/cube/). 
 
@@ -8,7 +8,7 @@ The cubeWorks package contains a group of programs to perform useful operations 
   <summary>UNIX Terminal</summary>
 
 - download and unzip the source code
-- enter <span style="color:red">cubeWorks</span> directory
+- enter **cubeWorks** directory
 - compile with GNU make
     - type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))  
     or
