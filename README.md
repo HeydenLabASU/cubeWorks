@@ -50,4 +50,25 @@ Command line arguments in square brackets (`[
 > - volume data in `input.cube` can be scaled with `scaling_factor`  
 > - A title is written in first of 4 header lines of output file. By default, title is taken from header of `input.cube` file, but optionally a new title can be provided on command line (white spaces in `output_title` currently not supported).
 
-  </details>
+</details>
+
+<details>
+  <summary>cubeAdd</summary>
+
+> `usage: cubeAdd A.cube B.cube output.cube [output_title]`
+> ` output.cube = A.cube + B.cube`
+>
+> - adds data in cube files `A.cube` and `B.cube` and writes result into `output.cube`  
+> - A title is written in first of 4 header lines of output file. By default, title is taken from header of `A.cube` file, but optionally a new title can be provided on command line (white spaces in `output_title` currently not supported).
+
+</details>
+
+<details>
+  <summary>cubeAver</summary>
+
+> `usage: cubeAver A.cube B.cube ... output.cube`
+> ` output.cube = (A.cube + B.cube + ...) / N`
+>
+> - averages data in cubes file `A.cube`, `B.cube`, ... (no explicit limit on number of cube input files that can be specified) and writes result into `output.cube` (last command line argument)
+
+</details>
