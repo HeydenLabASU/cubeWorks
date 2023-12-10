@@ -3,7 +3,9 @@
 The cubeWorks package contains a group of programs to perform useful operations on files in the [Gaussian cube format](https://paulbourke.net/dataformats/cube/). 
 
 <details>
-  <summary>## Installation (UNIX terminal)</summary>
+  <summary>**## **Installation** (UNIX terminal)**</summary>
+
+## Installation (UNIX terminal)
 
 - Download and unzip the source code
 - Enter the cubeWorks directory
