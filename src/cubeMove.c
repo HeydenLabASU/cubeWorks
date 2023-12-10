@@ -5,6 +5,7 @@
 #include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
@@ -12,13 +13,15 @@ int main(int argc,char *argv[]) {
     char title[300];
     char tmp[100];
     FILE *io;
-    t_grid gA;
+    t_grid g;
     int i,j,k,m;
     t_vec trans;
 
+    printName("cubeMove");
+
     if(argc<6) {
         printf("usage: cubeMove input.cube dX dY dZ output.cube [output_title]\n");
-        printf(" output.cube = A.cube + (dX dY dZ)\n");
+        printf(" output.cube = input.cube + (dX dY dZ)\n");
         exit(1);
     }
 
@@ -38,17 +41,17 @@ int main(int argc,char *argv[]) {
         printf("%-20s : %s\n","output title",title);
     }
 
-    readCUBE(fnCUBE,&gA,1.0,0);
-    vecAdd(gA.oriUHBD,trans,&gA.oriUHBD);
-    vecAdd(gA.oriMH,trans,&gA.oriMH);
-    vecAdd(gA.oriCUBE,trans,&gA.oriCUBE);
-    for(i=0;gA.nAtoms;i++) {
-        vecAdd(gA.atoms[i].crd,trans,&gA.atoms[i].crd);
+    readCUBE(fnCUBE,&g,1.0,0);
+    vecAdd(g.oriUHBD,trans,&g.oriUHBD);
+    vecAdd(g.oriMH,trans,&g.oriMH);
+    vecAdd(g.oriCUBE,trans,&g.oriCUBE);
+    for(i=0;g.nAtoms;i++) {
+        vecAdd(g.atoms[i].crd,trans,&g.atoms[i].crd);
     }
         if(argc>6) {
-        setCUBEtitle(&gA,title);
+        setCUBEtitle(&g,title);
     }
-    writeCUBE(fnOut,gA,1.0,0);
+    writeCUBE(fnOut,g,1.0,0);
 
     return 0;
 }

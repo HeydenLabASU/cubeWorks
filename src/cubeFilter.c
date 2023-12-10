@@ -5,6 +5,7 @@
 #include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/filter.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
@@ -14,6 +15,8 @@ int main(int argc,char *argv[]) {
     t_grid g,gSmooth;
     int n;
     float sigma;
+
+    printName("cubeFilter");
 
     if(argc<3) {
         printf("usage: cubeFilter input.cube sigma\n");

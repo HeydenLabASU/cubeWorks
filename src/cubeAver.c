@@ -16,11 +16,11 @@ int main(int argc,char *argv[]) {
     int equal;
     int i,j,k,m,n;
 
-    printName("cubeSum");
+    printName("cubeAver");
 
     if(argc<4) {
-        printf("usage: cubeSum A.cube B.cube ... output.cube\n");
-        printf(" output.cube = A.cube + B.cube + ...\n");
+        printf("usage: cubeAver A.cube B.cube ... output.cube\n");
+        printf(" output.cube = (A.cube + B.cube + ...) / N\n");
         exit(1);
     }
 
@@ -54,6 +54,14 @@ int main(int argc,char *argv[]) {
                 for(k=0;k<gOut.dim[2];k++) {
                     gOut.grid[i][j][k]+=gA.grid[i][j][k];
                 }
+            }
+        }
+    }
+
+    for(i=0;i<gOut.dim[0];i++) {
+        for(j=0;j<gOut.dim[1];j++) {
+            for(k=0;k<gOut.dim[2];k++) {
+                gOut.grid[i][j][k]/=(argc-2);
             }
         }
     }

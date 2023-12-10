@@ -6,28 +6,31 @@ IDIR=include
 ODIR=obj
 BDIR=bin
 
-_DEPS = types.h get.h matvec.h grids.h pdbio.h qsort.h
+_DEPS = types.h get.h matvec.h grids.h pdbio.h qsort.h cubeWorks.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJS = get.o matvec.o grids.o pdbio.o qsort.o
+_OBJS = get.o matvec.o grids.o pdbio.o qsort.o cubeWorks.o
 OBJS = $(patsubst %,$(ODIR)/functions/%,$(_OBJS))
 
 $(shell mkdir -p obj)
 $(shell mkdir -p obj/functions)
 $(shell mkdir -p bin)
 
-all: cube2dat cubeAdd cubeCenter cubeDelAtoms cubeDiv cubeFilter \
-cubeMax cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
+all: cube2dat cubeAdd cubeAver cubeCenter cubeDelAtoms cubeDiv cubeFilter \
+cubeMax cubeMirror cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
 cubeSub cubeSum cubeTitle resolvate
 
-noFT: cube2dat cubeAdd cubeCenter cubeDelAtoms cubeDiv \
-cubeMax cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
+noFT: cube2dat cubeAdd cubeAver cubeCenter cubeDelAtoms cubeDiv \
+cubeMax cubeMirror cubeMove cubeMult cubeRot cubeScale cubeScaleInv \
 cubeSub cubeSum cubeTitle resolvate
 
 cube2dat: $(ODIR)/cube2dat.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeAdd: $(ODIR)/cubeAdd.o $(OBJS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
+
+cubeAver: $(ODIR)/cubeAver.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeCenter: $(ODIR)/cubeCenter.o $(OBJS)
@@ -43,6 +46,9 @@ cubeFilter: $(ODIR)/cubeFilter.o $(OBJS) obj/functions/filter.o
 	$(CC) -o bin/$@ $^ $(CFLAGS) $(FT)
 
 cubeMax: $(ODIR)/cubeMax.o $(OBJS)
+	$(CC) -o bin/$@ $^ $(CFLAGS)
+
+cubeMirror: $(ODIR)/cubeMirror.o $(OBJS)
 	$(CC) -o bin/$@ $^ $(CFLAGS)
 
 cubeMove: $(ODIR)/cubeMove.o $(OBJS)

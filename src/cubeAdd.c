@@ -4,6 +4,7 @@
 #include "../include/types.h"
 #include "../include/get.h"
 #include "../include/grids.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
@@ -13,6 +14,8 @@ int main(int argc,char *argv[]) {
     FILE *io;
     t_grid gA,gB,gOut;
     int i,j,k,m;
+
+    printName("cubeAdd");
 
     if(argc<4) {
         printf("usage: cubeAdd A.cube B.cube output.cube [output_title]\n");

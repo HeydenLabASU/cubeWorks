@@ -5,6 +5,7 @@
 #include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
@@ -15,6 +16,8 @@ int main(int argc,char *argv[]) {
     t_grid gA,gB,gOut;
     int equal;
     int i,j,k,m;
+
+    printName("cubeSub");
 
     if(argc<4) {
         printf("usage: cubeSub A.cube B.cube output.cube [output_title]\n");

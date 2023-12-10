@@ -5,6 +5,7 @@
 #include "../include/types.h"
 #include "../include/get.h"
 #include "../include/grids.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     FILE *io;
@@ -14,6 +15,8 @@ int main(int argc,char *argv[]) {
     float **gCrd;
     float scale=1.0;
     t_grid g;
+
+    printName("cube2dat");
 
     if(argc<2) {
         printf("usage: cube2dat input.cube [output_filename] [scaling factor] [\"output_title\"]\n");

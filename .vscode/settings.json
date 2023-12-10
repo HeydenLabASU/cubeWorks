@@ -1,5 +1,5 @@
 {
     "files.associations": {
-        "matvec.h": "c"
+        "cubeworks.h": "c"
     }
 }

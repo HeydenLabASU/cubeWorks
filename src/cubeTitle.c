@@ -5,6 +5,7 @@
 #include "../include/types.h"
 #include "../include/get.h"
 #include "../include/grids.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     FILE *io;
@@ -13,6 +14,8 @@ int main(int argc,char *argv[]) {
     int i,j,k,m;
     float **gCrd;
     t_grid g;
+
+    printName("cubeTitle");
 
     if(argc<3) {
         printf("usage: cubeTitle input.cube \"new_title\"\n");

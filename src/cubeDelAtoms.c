@@ -5,12 +5,15 @@
 #include "../include/types.h"
 #include "../include/get.h"
 #include "../include/grids.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[300];
     int i,j,k,m;
     float **gCrd;
     t_grid g;
+
+    printName("cubeDelAtoms");
 
     if(argc<2) {
         printf("usage: cubeDelAtoms input.cube\n");

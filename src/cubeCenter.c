@@ -6,6 +6,7 @@
 #include "../include/get.h"
 #include "../include/matvec.h"
 #include "../include/grids.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[300],fnOut[300];
@@ -14,6 +15,8 @@ int main(int argc,char *argv[]) {
     float **gCrd;
     t_grid g;
     t_vec center;
+
+    printName("cubeCenter");
 
     if(argc<3) {
         printf("usage: cubeCenter input.cube output.cube [output title]\n");

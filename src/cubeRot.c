@@ -5,6 +5,7 @@
 #include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
@@ -12,20 +13,22 @@ int main(int argc,char *argv[]) {
     char title[300];
     char tmp[100];
     FILE *io;
-    t_grid gA;
+    t_grid g;
     int i,j,k,m;
     t_vec axis;
     float angle;
     t_mat rot;
 
+    printName("cubeRot");
+
     if(argc<7) {
         printf("usage: cubeRot A.cube axisX axisY axisZ angle output.cube [output_title]\n");
-        printf(" output.cube = rot(axis,angle) @ A.cube\n");
+        printf(" output.cube = rot(axis,angle) @ input.cube\n");
         exit(1);
     }
 
     getString(argv[1],fnCUBE);
-    printf("%-20s : %s\n","input file A",fnCUBE);
+    printf("%-20s : %s\n","input file",fnCUBE);
 
     getFloat(argv[2],&axis[0]);
     getFloat(argv[3],&axis[1]);
@@ -43,23 +46,23 @@ int main(int argc,char *argv[]) {
         printf("%-20s : %s\n","output title",title);
     }
 
-    readCUBE(fnCUBE,&gA,1.0,0);
+    readCUBE(fnCUBE,&g,1.0,0);
 
     rotAny(angle,axis,&rot);
-    matvec(rot,gA.oriUHBD,&gA.oriUHBD);
-    matvec(rot,gA.oriMH,&gA.oriMH);
-    matvec(rot,gA.oriCUBE,&gA.oriCUBE);
-    matvec(rot,gA.a,&gA.a);
-    matvec(rot,gA.b,&gA.b);
-    matvec(rot,gA.c,&gA.c);
-    for(i=0;gA.nAtoms;i++) {
-        matvec(rot,gA.atoms[i].crd,&gA.atoms[i].crd);
+    matvec(rot,g.oriUHBD,&g.oriUHBD);
+    matvec(rot,g.oriMH,&g.oriMH);
+    matvec(rot,g.oriCUBE,&g.oriCUBE);
+    matvec(rot,g.a,&g.a);
+    matvec(rot,g.b,&g.b);
+    matvec(rot,g.c,&g.c);
+    for(i=0;g.nAtoms;i++) {
+        matvec(rot,g.atoms[i].crd,&g.atoms[i].crd);
     }
     
     if(argc>7) {
-        setCUBEtitle(&gA,title);
+        setCUBEtitle(&g,title);
     }
-    writeCUBE(fnOut,gA,1.0,0);
+    writeCUBE(fnOut,g,1.0,0);
 
     return 0;
 }

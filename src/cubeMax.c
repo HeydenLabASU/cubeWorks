@@ -6,6 +6,7 @@
 #include "../include/matvec.h"
 #include "../include/grids.h"
 #include "../include/qsort.h"
+#include "../include/cubeWorks.h"
 
 void initProgress(int end,int *cnt,int *maxCnt,int *lastPercent) {
     cnt[0]=1;
@@ -207,6 +208,8 @@ int main(int argc,char *argv[]) {
     int **members;
     int *memberCnt;
     int *pos;
+
+    printName("cubeMax");
 
     if(argc<2) {
         printf("usage: cubeMax input.cube\n");

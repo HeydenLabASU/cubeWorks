@@ -7,6 +7,7 @@
 #include "../include/pdbio.h"
 #include "../include/qsort.h"
 #include "../include/matvec.h"
+#include "../include/cubeWorks.h"
 
 void distSq(t_vec a,t_vec b,double *dSq) {
     double dx,res;
@@ -225,6 +226,8 @@ int main(int argc,char *argv[]) {
     int **members;
     int *memberCnt;
     int *pos;
+
+    printName("resolvate");
 
     if(argc<4) {
         printf("usage: resolvate input.pdb input.cube dist\n");

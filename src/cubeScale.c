@@ -5,6 +5,7 @@
 #include "../include/get.h"
 #include "../include/grids.h"
 #include "../include/matvec.h"
+#include "../include/cubeWorks.h"
 
 int main(int argc,char *argv[]) {
     char fnCUBE[100];
@@ -12,13 +13,15 @@ int main(int argc,char *argv[]) {
     char title[300];
     char tmp[100];
     FILE *io;
-    t_grid gA;
+    t_grid g;
     int i,j,k,m;
     float scale;
 
+    printName("cubeScale");
+
     if(argc<4) {
-        printf("usage: cubeScale A.cube scale output.cube [output_title]\n");
-        printf(" output.cube = scale * A.cube\n");
+        printf("usage: cubeScale input.cube scale output.cube [output_title]\n");
+        printf(" output.cube = scale * input.cube\n");
         exit(1);
     }
 
@@ -36,19 +39,19 @@ int main(int argc,char *argv[]) {
         printf("%-20s : %s\n","output title",title);
     }
 
-    readCUBE(fnCUBE,&gA,1.0,0);
+    readCUBE(fnCUBE,&g,1.0,0);
 
-    for(i=0;i<gA.dim[0];i++) {
-        for(j=0;j<gA.dim[1];j++) {
-            for(k=0;k<gA.dim[2];k++) {
-                gA.grid[i][j][k]*=scale;
+    for(i=0;i<g.dim[0];i++) {
+        for(j=0;j<g.dim[1];j++) {
+            for(k=0;k<g.dim[2];k++) {
+                g.grid[i][j][k]*=scale;
             }
         }
     }
     if(argc>4) {
-        setCUBEtitle(&gA,title);
+        setCUBEtitle(&g,title);
     }
-    writeCUBE(fnOut,gA,1.0,0);
+    writeCUBE(fnOut,g,1.0,0);
 
     return 0;
 }

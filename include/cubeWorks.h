@@ -1,0 +1,1 @@
+int printName(char *name);
