@@ -34,9 +34,7 @@ All cubeWorks programs print a short usage, *e.g.*
 `usage: cubeAdd A.cube B.cube output.cube [output_title]`  
 ` output.cube = A.cube + B.cube`
 
-Command line arguments in square brackets (`[ 
-
-]`) are optional.
+Command line arguments in square brackets (`[ ]`) are optional.
 
 ## Short Description of Each Program
 
