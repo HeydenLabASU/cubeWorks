@@ -2,10 +2,10 @@
 
 The cubeWorks package contains a group of programs to perform useful operations on files in the [Gaussian cube format](https://paulbourke.net/dataformats/cube/). 
 
-## Installation (UNIX terminal)
+## Installation
 
-<details markdown='2'>
-  <summary>expand</summary>
+<details>
+  <summary>UNIX Terminal</summary>
 
 - Download and unzip the source code
 - Enter the cubeWorks directory
