@@ -77,7 +77,6 @@ int main(int argc,char *argv[]) {
         for(i=0;i<g.dim[0]/2;i++) {
             l=g.dim[0]-i-1;
             for(j=0;j<g.dim[1];j++) {
-                l=g.dim[1]-j-1;
                 for(k=0;k<g.dim[2];k++) {
                     aver=(g.grid[i][j][k]+g.grid[l][j][k])/2.0;
                     g.grid[i][j][k]=aver;
