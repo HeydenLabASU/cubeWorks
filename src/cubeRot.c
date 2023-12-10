@@ -37,6 +37,7 @@ int main(int argc,char *argv[]) {
     
     getFloat(argv[5],&angle);
     printf("%-20s : %f\n","rotation angle",angle);
+    angle=angle/360.0*2.0*3.14159265359;
 
     getString(argv[6],fnOut);
     printf("%-20s : %s\n","output file",fnOut);
@@ -58,7 +59,7 @@ int main(int argc,char *argv[]) {
     matvec(rot,g.a,&g.a);
     matvec(rot,g.b,&g.b);
     matvec(rot,g.c,&g.c);
-    for(i=0;g.nAtoms;i++) {
+    for(i=0;i<g.nAtoms;i++) {
         matvec(rot,g.atoms[i].crd,&g.atoms[i].crd);
     }
     
