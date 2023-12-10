@@ -44,8 +44,8 @@ int main(int argc,char *argv[]) {
 
     readCUBE(fnInput,&g,scale,0);
     if(g.aligned!=1 || g.orthorhombic!=1) {
-        printf("ERROR: grid with non-orthorhombic/non-aligned voxels\n");
-        printf("ERROR: cannot write in simple data format\n");
+        fprintf(stderr,"ERROR: grid with non-orthorhombic/non-aligned voxels\n");
+        fprintf(stderr,"       cannot write in simple data format\n");
         exit(1);
     }
     if(argc>4) {

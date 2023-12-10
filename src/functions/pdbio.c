@@ -16,7 +16,7 @@ int readPDBcrd(char *fnPDB,t_conf *conf) {
     
     io=fopen(fnPDB,"r");
     if(io==NULL) {
-        printf("ERROR: grid file %s not found\n",fnPDB);
+        fprintf(stderr,"ERROR: grid file %s not found\n",fnPDB);
         exit(1);
     }
     printf("READING FILE %s\n",fnPDB);
@@ -27,8 +27,8 @@ int readPDBcrd(char *fnPDB,t_conf *conf) {
     rewind(io);
     conf[0].nAtoms=n;
     if(n>5000) {
-        printf("number of atoms in %s exceeds current limit (%d>5000)\n",fnPDB,n);
-        printf("adapt t_conf datatype and function readPDBcrd\n");
+        fprintf(stderr,"number of atoms in %s exceeds current limit (%d>5000)\n",fnPDB,n);
+        fprintf(stderr,"adapt t_conf datatype and function readPDBcrd\n");
         exit(1);
     }
     printf("found %d atom entries\n",n);
@@ -63,7 +63,7 @@ int readPDBcrd(char *fnPDB,t_conf *conf) {
             else if(strncmp(&conf[0].elem[i],"S",1)==0) m=32.0600;
             else if(strncmp(&conf[0].elem[i],"P",1)==0) m=30.9740;
             else {
-                printf("ERROR: unknown atom mass for %s\n",conf[0].atName[i]);
+                fprintf(stderr,"ERROR: unknown atom mass for %s\n",conf[0].atName[i]);
                 exit(1);
             }
             conf[0].atMass[i]=m;

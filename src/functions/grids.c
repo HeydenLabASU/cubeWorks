@@ -10,7 +10,7 @@ int readNBYTE(FILE *io,int expect,char *fnGrd) {
 
     fread(&nb,sizeof(int),1,io);
     if(nb!=expect) {
-        printf("ERROR: unexpected format for binary UHBD grid file in %s\n",fnGrd);
+        fprintf(stderr,"ERROR: unexpected format for binary UHBD grid file in %s\n",fnGrd);
         exit(1);
     }
     return 0;
@@ -21,19 +21,19 @@ int allocGrd(t_grid *g) {
     printf("allocating %d bytes for grid\n",g[0].nVoxel*4);
     g[0].grid=(float***)malloc(g[0].dim[0]*sizeof(float**));
     if(g[0].grid==NULL) {
-        printf("grid memory allocation failed\n");
+        fprintf(stderr,"grid memory allocation failed\n");
         exit(1);
     }
     for(i=0;i<g[0].dim[0];i++) {
         g[0].grid[i]=(float**)malloc(g[0].dim[1]*sizeof(float*));
         if(g[0].grid[i]==NULL) {
-            printf("grid memory allocation failed\n");
+            fprintf(stderr,"grid memory allocation failed\n");
             exit(1);
         }
         for(j=0;j<g[0].dim[1];j++) {
             g[0].grid[i][j]=(float*)malloc(g[0].dim[2]*sizeof(float));
             if(g[0].grid[i][j]==NULL) {
-                printf("grid memory allocation failed\n");
+                fprintf(stderr,"grid memory allocation failed\n");
                 exit(1);
             }
             for(k=0;k<g[0].dim[2];k++) {
@@ -56,7 +56,7 @@ int readUHBDGridASCII(char *fnGrd,t_grid *grid,float scale) {
     printf("opening file %s for reading\n",fnGrd);
     io=fopen(fnGrd,"r");
     if(io==NULL) {
-        printf("ERROR: input grid file not found: %s\n",fnGrd);
+        fprintf(stderr,"ERROR: input grid file not found: %s\n",fnGrd);
         exit(1);
     }
     grid[0].aligned=1;
@@ -80,7 +80,7 @@ int readUHBDGridASCII(char *fnGrd,t_grid *grid,float scale) {
         &grid[0].oriUHBD[2]
     );
     if(grid[0].dg<=0) {
-        printf("negative or 0 grid constant %f in %s\n",grid[0].dg,fnGrd);
+        fprintf(stderr,"ERROR: negative or 0 grid constant %f in %s\n",grid[0].dg,fnGrd);
         exit(1);
     }
      /*define the vectors of the (implied) cubic voxels*/
@@ -133,7 +133,7 @@ int readUHBDGrid(char *fnGrd,t_grid *grid,float scale) {
     printf("opening file %s for reading\n",fnGrd);
     io=fopen(fnGrd,"rb");
     if(io==NULL) {
-        printf("ERROR: input grid file not found: %s\n",fnGrd);
+        fprintf(stderr,"ERROR: input grid file not found: %s\n",fnGrd);
         exit(1);
     }
     grid[0].aligned=1;
@@ -156,7 +156,7 @@ int readUHBDGrid(char *fnGrd,t_grid *grid,float scale) {
 
     fread(&grid[0].dg,sizeof(float),1,io);
     if(grid[0].dg<=0) {
-        printf("negative or 0 grid constant %f in %s\n",grid[0].dg,fnGrd);
+        fprintf(stderr,"ERROR: negative or 0 grid constant %f in %s\n",grid[0].dg,fnGrd);
         exit(1);
     }
     /*define the vectors of the (implied) cubic voxels*/
@@ -217,8 +217,8 @@ int writeUHBDGrid(char *fnGrd,t_grid grid,float scale) {
     char title[75];
 
     if(grid.aligned!=1 || grid.orthorhombic!=1 || grid.cubic!=1) {
-        printf("ERROR: grid with non-cubic/non-aligned voxels\n");
-        printf("ERROR: cannot write in UHBD format\n");
+        fprintf(stderr,"ERROR: grid with non-cubic/non-aligned voxels\n");
+        fprintf(stderr,"ERROR: cannot write in UHBD format\n");
         exit(1);
     }
     magic1=160;
@@ -286,7 +286,7 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
     printf("opening file %s for reading\n",fnGrd);
     io=fopen(fnGrd,"r");
     if(io==NULL) {
-        printf("ERROR: grid file %s not found\n",fnGrd);
+        fprintf(stderr,"ERROR: grid file %s not found\n",fnGrd);
         exit(1);
     }
     fgets(buffer,300,io);
@@ -302,7 +302,7 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
     if(ni<0) {
         ni*=-1;
         toA=1.0;
-        printf("NOTE: coordinates in CUBE file: %s in Angstrom\n",fnGrd);
+        fprintf(stderr,"NOTE: coordinates in CUBE file: %s in Angstrom\n",fnGrd);
     }
     vecScale(toA,a,&a);
     vecCpy(a,&grid[0].a);
@@ -324,7 +324,7 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
     if(b[0]!=0.0 || b[2]!=0.0) grid[0].aligned=0;
     if(c[0]!=0.0 || c[1]!=0.0) grid[0].aligned=0;
     if(grid[0].aligned!=1) {
-        printf("NOTE: grid voxels not aligned with axes\n");
+        fprintf(stderr,"NOTE: grid voxels not aligned with axes\n");
     }
 
     if(vecOrtho(a,b)==1 && vecOrtho(a,c)==1 && vecOrtho(b,c)==1) {
@@ -335,13 +335,13 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
         } else {
             grid[0].cubic=0;
             grid[0].dg=0.0;
-            printf("NOTE: grid voxels orthorhombic but not cubic\n");
+            fprintf(stderr,"NOTE: grid voxels orthorhombic but not cubic\n");
         }
     } else {
         grid[0].orthorhombic=0;
         grid[0].cubic=0;
         grid[0].dg=0.0;
-        printf("NOTE: grid voxels not orthorhombic\n");
+        fprintf(stderr,"NOTE: grid voxels not orthorhombic\n");
     }
     
     grid[0].dim[0]=ni;
@@ -379,7 +379,7 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
         for(j=0;j<nj;j++) {
             for(k=0;k<nk;k++) {
                 fscanf(io,"%f",&tmp);
-                if(scale!=1.0) printf("NOTE: grid values scled by %f\n",scale);
+                if(scale!=1.0) fprintf(stderr,"NOTE: grid values scled by %f\n",scale);
                 grid[0].grid[i][j][k]=tmp*scale;
             }
         }

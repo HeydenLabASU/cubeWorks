@@ -44,9 +44,9 @@ int main(int argc,char *argv[]) {
         readCUBE(fnCUBE,&gA,1.0,0);
     
         if(eqCUBEformat(gA,gOut)!=1) {
-            printf("ERROR: incompatible grid formats:\n");
-            printf(" %s\n",argv[1]);
-            printf(" %s\n",argv[n]);
+            fprintf(stderr,"ERROR: incompatible grid formats:\n");
+            fprintf(stderr," %s\n",argv[1]);
+            fprintf(stderr," %s\n",argv[n]);
             exit(1);
         }
         for(i=0;i<gOut.dim[0];i++) {

@@ -43,9 +43,9 @@ int main(int argc,char *argv[]) {
     } else esc=0.0;
 
     if(eqCUBEformat(gA,gB)!=1) {
-        printf("ERROR: incompatible grid formats:\n");
-        printf(" %s\n",argv[1]);
-        printf(" %s\n",argv[2]);
+        fprintf(stderr,"ERROR: incompatible grid formats:\n");
+        fprintf(stderr," %s\n",argv[1]);
+        fprintf(stderr," %s\n",argv[2]);
         exit(1);
     } else {
         cpyCUBEformat(gA,&gOut);
@@ -61,8 +61,8 @@ int main(int argc,char *argv[]) {
                     gOut.grid[i][j][k]=esc;
                     if(flag==0) {
                         flag=1;
-                        printf("NOTE: division by zero encountered\n");
-                        printf("      result set to: %f\n,esc");
+                        fprintf(stderr,"NOTE: division by zero encountered\n");
+                        fprintf(stderr,"      result set to: %f\n,esc");
                     }
                 }
             }

@@ -42,9 +42,9 @@ int main(int argc,char *argv[]) {
     }
     
     if(eqCUBEformat(gA,gB)!=1) {
-        printf("ERROR: incompatible grid formats:\n");
-        printf(" %s\n",argv[1]);
-        printf(" %s\n",argv[2]);
+        fprintf(stderr,"ERROR: incompatible grid formats:\n");
+        fprintf(stderr," %s\n",argv[1]);
+        fprintf(stderr," %s\n",argv[2]);
         exit(1);
     } else {
         cpyCUBEformat(gA,&gOut);

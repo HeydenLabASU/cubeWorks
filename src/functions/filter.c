@@ -19,7 +19,7 @@ int smoothGrid(t_grid g,float sigma,t_grid *res) {
     double gaussNorm;
 
     if(g.cubic!=1) {
-        printf("ERROR: function \'smoothGrid\' only implemented for cubic voxels\n");
+        fprintf(stderr,"ERROR: function \'smoothGrid\' only implemented for cubic voxels\n");
         exit(1);
     }
 

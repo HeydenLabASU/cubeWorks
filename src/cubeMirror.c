@@ -35,7 +35,7 @@ int main(int argc,char *argv[]) {
                              strncmp(argv[2],"YZ",2)!=0
                             )
     ) {
-        printf("ERROR: %s is neither XY,XZ,YZ\n",argv[2]);
+        fprintf(stderr,"ERROR: %s is neither XY,XZ,YZ\n",argv[2]);
         exit(1);
     }
     getString(argv[2],plane);
@@ -50,6 +50,19 @@ int main(int argc,char *argv[]) {
     }
 
     readCUBE(fnCUBE,&g,1.0,0);
+
+    if(g.aligned!=1) {
+        fprintf(stderr,"WARNING: cubeMirror does NOT use actual spatial coordinates\n");
+        fprintf(stderr,"         mirror operations are implemented using array indices only\n");
+        fprintf(stderr,"         voxels in %s are not aligned with coordinate axes\n",fnCUBE);
+        fprintf(stderr,"         make sure output is what you expect\n");
+    }
+
+    if(g.rthorhombic!=1) {
+        fprintf(stderr,"WARNING: cubeMirror is intended for orthorhomic grids\n");
+        fprintf(stderr,"         non-orthorhombic voxels detected in %s\n",fnCUBE)
+        fprintf(stderr,"         make sure output is what you expect\n");
+    }
 
     if(strncmp(plane,"XY",2)==0) {
         for(i=0;i<g.dim[0];i++) {
