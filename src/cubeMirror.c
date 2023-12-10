@@ -21,8 +21,7 @@ int main(int argc,char *argv[]) {
     printName("cubeMirror");
 
     if(argc<4) {
-        printf("usage: cubeScale input.cube plane output.cube [output_title]\n");
-        printf(" output.cube = scale * A.cube\n\n");
+        printf("usage: cubeMirror input.cube plane output.cube [output_title]\n\n");
         exit(1);
     }
 

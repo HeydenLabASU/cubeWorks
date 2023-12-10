@@ -18,7 +18,7 @@ int main(int argc,char *argv[]) {
     printName("cubeTitle");
 
     if(argc<3) {
-        printf("usage: cubeTitle input.cube \"new_title\"\n\n");
+        printf("usage: cubeTitle input.cube new_title\n\n");
         exit(1);
     }
 
