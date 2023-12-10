@@ -7,11 +7,15 @@ The cubeWorks package contains a group of programs to perform useful operations 
 <details>
   <summary>UNIX Terminal</summary>
 
-- Download and unzip the source code
-- Enter the cubeWorks directory
-- type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))  
-OR
-- type `make noFT` to compile without fftw3 (no cubeFilter)
-- add cubeWorks/bin to your $PATH, copy contents of cubeWorks/bin
+- download and unzip the source code
+- enter the cubeWorks directory
+- compile with GNU make
+    - type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))  
+    OR
+    - type `make noFT` to compile without fftw3 (no cubeFilter)
+- make binaries findable
+    - add cubeWorks/bin to $PATH:  `dir=$(pwd)`  `echo "export PATH=$PATH:${dir}/bin" \>& ~/.bash_profile`
+    OR
+    - copy contents of cubeWorks/bin to usr/local/bin: `sudo cp bin/* usr/local/bin/`
 
 </details>
