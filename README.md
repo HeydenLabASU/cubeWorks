@@ -9,7 +9,7 @@ The cubeWorks package contains a group of programs to perform operations on file
 
 > - download and unzip the source code
 > - enter **cubeWorks** directory, *e.g.*  
-> `cd cubeWorks-1.0.0` or `cd cubeWorks-main`
+> `cd cubeWorks-1.0` or `cd cubeWorks-main`
 > - compile with [GNU make](www.gnu.org/software/make/)
 >    - type `make` to compile all programs (requires float version of [FFTW3](www.fftw.org))  
 >    or
