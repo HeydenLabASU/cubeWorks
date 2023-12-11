@@ -294,7 +294,7 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
     strncpy(grid[0].title,buffer,75);
     i=strlen(grid[0].title);
     if(i<75) {
-        grid[0].title[i]=(char)0;
+        grid[0].title[i-1]=(char)0;
     } else {
         grid[0].title[74]=(char)0;
     }
