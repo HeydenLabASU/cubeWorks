@@ -28,7 +28,7 @@ The cubeWorks package contains a group of programs to perform operations on file
 
 ## Using cubeWorks
 
-All cubeWorks programs print a short usage, *e.g.*  
+All cubeWorks programs print a short usage message, *e.g.*  
 
 `[user@localhost:~]$ cubeAdd`  
 `usage: cubeAdd A.cube B.cube output.cube [output_title]`  
