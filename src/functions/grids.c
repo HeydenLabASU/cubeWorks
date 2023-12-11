@@ -291,11 +291,13 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
     }
     fgets(buffer,300,io);
     i=strlen(buffer);
-    strcpy(grid[0].title,buffer);
-    if(i<300) {
+    strncpy(grid[0].title,buffer,75);
+    i=strlen(grid[0].title);
+    if(i<75) {
         grid[0].title[i]=(char)0;
+    } else {
+        grid[0].title[74]=(char)0;
     }
-    grid[0].title[72]=(char)0;
     fgets(buffer,300,io);
     fgets(buffer,300,io);
     sscanf(buffer,"%d %f %f %f\n",&grid[0].nAtoms,&grid[0].oriMH[0],&grid[0].oriMH[1],&grid[0].oriMH[2]);
