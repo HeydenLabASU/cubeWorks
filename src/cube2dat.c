@@ -31,6 +31,7 @@ int main(int argc,char *argv[]) {
         getString(argv[2],fnOutput);
     } else {
         strcpy(fnOutput,fnInput);
+        i=strlen(fnOutput);
         sprintf(&fnOutput[i-5],"%s",".dat");
     }
     printf("%-20s : %s\n","output file",fnOutput);
@@ -61,7 +62,7 @@ int main(int argc,char *argv[]) {
     }
     
     io=fopen(fnOutput,"w");
-    fprintf(io,"#%s\n",title);
+    fprintf(io,"#%s\n",g.title);
     fprintf(io,"#grid dimension: %4d %4d %4d\n",g.dim[0],g.dim[1],g.dim[2]);
     fprintf(io,"#x (A)       y (A)        z (A)        (see title)\n");
     i=0;
