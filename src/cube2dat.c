@@ -13,7 +13,7 @@ int main(int argc,char *argv[]) {
     char fnInput[300],fnOutput[300];
     char title[300];
     int i,j,k,m;
-    float **gCrd;
+    t_vec *gCrd;
     float scale=1.0;
     t_grid g;
 
@@ -49,10 +49,7 @@ int main(int argc,char *argv[]) {
         setCUBEtitle(&g,title);
     }
 
-    gCrd=(float**)malloc(g.nVoxel*sizeof(float*));
-    for(i=0;i<g.nVoxel;i++) {
-        gCrd[i]=(float*)malloc(3*sizeof(float));
-    }
+    gCrd=(_t_vec*)malloc(g.nVoxel*sizeof(t_vec));
     m=0;
     for(i=0;i<g.dim[0];i++) {
         for(j=0;j<g.dim[1];j++) {
