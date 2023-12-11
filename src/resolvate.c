@@ -239,7 +239,7 @@ int main(int argc,char *argv[]) {
     getString(argv[1],fnPDB);
     printf("%-20s : %s\n","pdb input file",fnPDB);
 
-    getString(argv[1],fnCUBE);
+    getString(argv[2],fnCUBE);
     printf("%-20s : %s\n","cube input file",fnCUBE);
 
     getFloat(argv[3],&dist);
