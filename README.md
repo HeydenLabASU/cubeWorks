@@ -103,8 +103,7 @@ Command line arguments in square brackets (`[ ]`) are optional.
 > - applies 3D Gaussian blur filter on data in `input.cube` to suppress noise
 > - sigma specifies the kernel width of the filter in Angstrom
 >   - small sigma: 
-> - output is written to cube file with name derived from `input.cube` and sigma, *e.g.* `input`
-> - if division by zero is encountered, the result can be defined with `escape` (0 by default)
+> - output is written to cube file with name derived from `input.cube` and sigma, *e.g.* `input_f-1.00A.cube`
 
 </details>
 
