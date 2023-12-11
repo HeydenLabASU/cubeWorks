@@ -67,7 +67,7 @@ Command line arguments in square brackets (`[ ]`) are optional.
 > `usage: cubeAver A.cube B.cube ... output.cube`  
 > ` output.cube = (A.cube + B.cube + ...) / N`  
 >
-> - averages data in cubes file `A.cube`, `B.cube`, ... (no explicit limit on number of cube input files that can be specified) and writes result into `output.cube` (last command line argument)
+> - averages data in cube files `A.cube`, `B.cube`, ... (no explicit limit on number of cube input files that can be specified) and writes result into `output.cube` (last command line argument)
 
 </details>
 
@@ -215,7 +215,7 @@ Command line arguments in square brackets (`[ ]`) are optional.
 > `usage: cubeSum A.cube B.cube ... output.cube`  
 > ` output.cube = A.cube + B.cube + ...`  
 >
-> - sums data in cubes file `A.cube`, `B.cube`, ... (no explicit limit on number of cube input files that can be specified) and writes result into `output.cube` (last command line argument)
+> - sums data in cube files `A.cube`, `B.cube`, ... (no explicit limit on number of cube input files that can be specified) and writes result into `output.cube` (last command line argument)
 
 </details>
 
