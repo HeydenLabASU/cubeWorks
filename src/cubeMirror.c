@@ -57,7 +57,7 @@ int main(int argc,char *argv[]) {
         fprintf(stderr,"         make sure output is what you expect\n");
     }
 
-    if(g.rthorhombic!=1) {
+    if(g.orthorhombic!=1) {
         fprintf(stderr,"WARNING: cubeMirror is intended for orthorhomic grids\n");
         fprintf(stderr,"         non-orthorhombic voxels detected in %s\n",fnCUBE)
         fprintf(stderr,"         make sure output is what you expect\n");
