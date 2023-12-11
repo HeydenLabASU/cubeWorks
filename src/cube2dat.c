@@ -49,7 +49,7 @@ int main(int argc,char *argv[]) {
         setCUBEtitle(&g,title);
     }
 
-    gCrd=(_t_vec*)malloc(g.nVoxel*sizeof(t_vec));
+    gCrd=(t_vec*)malloc(g.nVoxel*sizeof(t_vec));
     m=0;
     for(i=0;i<g.dim[0];i++) {
         for(j=0;j<g.dim[1];j++) {
