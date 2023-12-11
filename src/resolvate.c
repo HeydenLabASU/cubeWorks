@@ -386,7 +386,7 @@ int main(int argc,char *argv[]) {
 
     io=fopen(fnOut1,"w");
     fprintf(io,"#Note: all reported indices start at 1 (not 0)\n");
-    fprintf(io,"#%11s %11s %11s %7s %11s %11s %7s : %-16s\n",
+    fprintf(io,"#%10s %11s %11s %7s %11s %11s %7s : %-16s\n",
         "x (A)","y (A)","z (A)"," index","peak","sum","nVoxels","member-indices");
     for(l=0;l<nMax;l++) {
         m=sorted[l];
