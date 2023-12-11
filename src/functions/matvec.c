@@ -273,7 +273,7 @@ int vecLenEq(t_vec a,t_vec b) {
     vecNorm(b,&bl);
     dab=al-bl;
     if(dab<0.0) dab*=-1.0;
-    if(dab<1.0e-8) return 1;
+    if(dab<1.0e-6) return 1;
     else return 0;
 }
 
@@ -281,7 +281,7 @@ int vecOrtho(t_vec a,t_vec b) {
     double dot;
     vecDot(a,b,&dot);
     if(dot<0.0) dot*=-1.0;
-    if(dot<1.0e-8) return 1;
+    if(dot<1.0e-6) return 1;
     else return 0;
 }
 
