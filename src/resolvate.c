@@ -257,9 +257,6 @@ int main(int argc,char *argv[]) {
     sprintf(fnOut2,"%s+shell-%.2fA.pdb",tmp,dist);
     printf("%-20s : %s\n","output file 2",fnOut2);
 
-    sscanf(argv[1],"%s",fnPDB);
-    sscanf(argv[2],"%s",fnCUBE);
-    sscanf(argv[3],"%f",&dist);
     minDSq=dist*dist;
 
     readCUBE(fnCUBE,&g,1.0,0);
