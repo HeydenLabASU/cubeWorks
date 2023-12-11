@@ -17,7 +17,7 @@ The cubeWorks package contains a group of programs to perform operations on file
 > - make **cubeWorks** binaries findable
 >    - add cubeWorks/bin to $PATH:  
 >    `dir=$(pwd)`  
->    `echo "export PATH=$PATH:${dir}/bin" >> ~/.bash_profile`  
+>    `echo "export PATH=\$PATH:${dir}/bin" >> ~/.bash_profile`  
 >    or
 >    - copy contents of cubeWorks/bin to usr/local/bin:  
 >    `sudo cp bin/* usr/local/bin/`  
