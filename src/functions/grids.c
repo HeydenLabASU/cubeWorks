@@ -290,7 +290,11 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
         exit(1);
     }
     fgets(buffer,300,io);
+    i=strlen(buffer);
     strcpy(grid[0].title,buffer);
+    if(i<300) {
+        grid[0].title[i]=(char)0;
+    }
     grid[0].title[72]=(char)0;
     fgets(buffer,300,io);
     fgets(buffer,300,io);
