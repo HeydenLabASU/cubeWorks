@@ -46,7 +46,7 @@ Command line arguments in square brackets (`[ ]`) are optional.
 > - converts file `input.cube` into ASCII data file with explicitly written x, y and z coordinates  
 > - if `output_filename` is not specified, the `.cube` extension of the input file is replaced by `.dat`  
 > - volume data in `input.cube` can be scaled with `scaling_factor`  
-> - A title is written in first of 3 header lines of output file. By default, title is taken from header of `input.cube` file, but optionally a new title can be provided on command line (white spaces in title currently not supported)
+> - A title is written in first of 3 header lines of output file. By default, title is taken from header of `input.cube` file, but optionally a new title can be provided on command line (white spaces in output_title currently not supported)
 
 </details>
 
