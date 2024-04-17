@@ -116,11 +116,11 @@ Command line arguments in square brackets (`[ ]`) are optional.
 > - identifies all local maxima in the density stored in `input.cube`
 > - results are stored in a formatted ASCII file that conatins:
 >   - coordinates of the maxima
->   - 1D indeces of corresponding voxels
+>   - 1D indices of corresponding voxels
 >   - peak intensities
 >   - peak integrals (sum over voxels belonging to maximum)
 >   - number of voxels belonging to peak
->   - indeces of all voxels associated with each peak
+>   - indices of all voxels associated with each peak
 > - output file name derived from `input.cube`, *e.g.* `input_maxima.dat`
 
 </details>
@@ -239,11 +239,11 @@ Command line arguments in square brackets (`[ ]`) are optional.
 > - identifies all local maxima of density in `input.cube`
 > - results are stored in a formatted ASCII file that conatins:
 >   - coordinates of the maxima
->   - 1D indeces of corresponding voxels
+>   - 1D indices of corresponding voxels
 >   - peak intensities
 >   - peak integrals (sum over voxels belonging to maximum)
 >   - number of voxels belonging to peak
->   - indeces of all voxels associated with each peak
+>   - indices of all voxels associated with each peak
 > - output file name derived from `input.cube`, *e.g.* `input_maxima.dat`
 > - identifies all maxima within distance `dist` of any atom in `input.pdb`
 > - write PDB file with HETATM entries for water oxygens associated position of all density maxima within distance `dist`
