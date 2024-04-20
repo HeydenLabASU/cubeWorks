@@ -274,7 +274,7 @@ int readCUBE(char *fnGrd,t_grid *grid,float scale,int oriType) {
     FILE *io;
     char buffer[300];
     float tmp;
-    float toA=0.529177;
+    float toA=0.5292;
     int i,j,k;
     int ni,nj,nk;
     t_vec a,b,c;
@@ -398,7 +398,7 @@ int writeCUBE(char *fnGrd,t_grid grid,float scale,int oriType) {
     FILE *io;
     int i,j,k;
     int ni,nj,nk;
-    float toA=0.529177;
+    float toA=0.5292;
 
     ni=grid.dim[0];
     nj=grid.dim[1];
