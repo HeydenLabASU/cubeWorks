@@ -27,17 +27,7 @@ int smoothGrid(t_grid g,float sigma,t_grid *res) {
     nj=g.dim[1];
     nk=g.dim[2];
 
-    res[0].dim[0]=ni;
-    res[0].dim[1]=nj;
-    res[0].dim[2]=nk;
-    vecCpy(g.oriUHBD,&res[0].oriUHBD);
-    vecCpy(g.oriMH,&res[0].oriMH);
-    vecCpy(g.oriCUBE,&res[0].oriCUBE);
-    res[0].dg=g.dg;
-    vecCpy(g.a,&res[0].a);
-    vecCpy(g.b,&res[0].b);
-    vecCpy(g.c,&res[0].c);
-    res[0].nVoxel=g.nVoxel;
+    cpyCUBEformat(g,res);
     allocGrd(res);
     for(i=0;i<75;i++) res[0].title[i]=(char)0;
     sprintf(res[0].title,"resolution %6.3f A",sigma);
