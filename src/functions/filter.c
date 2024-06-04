@@ -34,6 +34,9 @@ int smoothGrid(t_grid g,float sigma,t_grid *res) {
     vecCpy(g.oriMH,&res[0].oriMH);
     vecCpy(g.oriCUBE,&res[0].oriCUBE);
     res[0].dg=g.dg;
+    vecCpy(g.a,&res[0].a);
+    vecCpy(g.b,&res[0].b);
+    vecCpy(g.c,&res[0].c);
     allocGrd(res);
     for(i=0;i<75;i++) res[0].title[i]=(char)0;
     sprintf(res[0].title,"resolution %6.3f A",sigma);
